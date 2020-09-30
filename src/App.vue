@@ -2,13 +2,13 @@
   <div id="app" class="roster">
     <HelloWorld msg="Dragonball Fighterz Combos"/>
     <ul v-for="char in roster" :key="char.name">
-      <li><p>{{char.name}}</p></li>
       <li class="char">
         <div class="layer1">
           <img v-bind:src="char.image" />
         </div>
         <div class="layer2" v-bind:style="{ 'background-color': char.color }"></div>
       </li>
+      <li><p>{{char.name}}</p></li>
     </ul>
     
   </div>
