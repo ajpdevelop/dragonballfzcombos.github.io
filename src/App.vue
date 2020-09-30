@@ -4,7 +4,10 @@
     <ul v-for="char in roster" :key="char.name">
       <li><p>{{char.name}}</p></li>
       <li class="char">
-        <img v-bind:src="char.image" />
+        <div class="layer1">
+          <img v-bind:src="char.image" />
+        </div>
+        <div class="layer2" v-bind:style="{ 'background-color': char.color }"></div>
       </li>
     </ul>
     
@@ -50,28 +53,41 @@ export default {
 }
 .roster ul {
   width: 12%;
+  padding: 0 10px;
   display: inline-block;
 }
 .roster ul li {
   list-style: none;
-}
-.roster ul .char {
-  width: 100%;
-  height: 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align:center;
-  list-style: none;
-  overflow: hidden;
 }
 .roster ul li p {
   font-size: 16px;
   margin: 0;
   font-weight: bold;
 }
-.roster ul .char img {
+.roster ul .char {
+  width: 100%;
+  height: 240px;
+  display: flex;
+  list-style: none;
+  overflow: hidden;
+}
+.roster ul .char .layer1 {
+  width: 100%;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 2;
+}
+.roster ul .char .layer2 {
+  width: 100%;
+  margin-left: -100%;
+  height: 484px;
+  z-index: 1;
+  transform: rotate(57deg);
+}
+.roster ul .char .layer1 img {
   height: 100%;
 }
 </style>
