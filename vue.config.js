@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: 'dbfzc-app'
+  publicPath: '/dragonballfzcombos.github.io/'
 }
