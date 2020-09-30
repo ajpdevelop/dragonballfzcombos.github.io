@@ -2,7 +2,6 @@
   <div id="app" class="roster">
     <HelloWorld msg="Dragonball Fighterz Combos"/>
     <ul v-for="char in roster" :key="char.name">
-      <li>TEST</li>
       <li><p>{{char.name}}</p>
         <br />
         <img v-bind:src="char.image" />
