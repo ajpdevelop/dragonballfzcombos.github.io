@@ -1,7 +1,13 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="roster">
+    <HelloWorld msg="Dragonball Fighterz Combos"/>
+    <ul v-for="char in roster" :key="char.name">
+      <li><p>{{char.name}}</p>
+        <br />
+        <img v-bind:src="char.image" />
+      </li>
+    </ul>
+    
   </div>
 </template>
 
@@ -12,8 +18,20 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data: function() {
+    return {
+      roster: []
+    };
+  },
+  created: function() {
+    this.$axios.get("https://dbfzcs.s3.us-east-2.amazonaws.com/roster.json")
+    .then(res => {
+      console.log(res.data);
+      this.roster = res.data;
+    });
   }
-}
+};
 </script>
 
 <style>
@@ -24,5 +42,18 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.roster {
+  width: 100%;
+  display: block;
+  float: left;
+}
+.roster ul {
+  width: 20%;
+  display: inline-block;
+}
+.roster ul li {
+  width: 100%;
+  text-align: center;
 }
 </style>
