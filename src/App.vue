@@ -70,6 +70,7 @@ export default {
   display: flex;
   list-style: none;
   overflow: hidden;
+  border-radius: 40px;
 }
 .roster ul .char .layer1 {
   width: 100%;
