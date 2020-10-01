@@ -1,36 +1,51 @@
 <template>
   <div id="app" class="roster">
+
     <HelloWorld msg="Dragonball Fighterz Combos"/>
-    <ul v-for="char in roster" :key="char.name">
-      <li class="char">
-        <div class="layer1">
-          <img v-bind:src="char.image" />
-        </div>
-        <div class="layer2" v-bind:style="{ 'background-color': char.color }"></div>
-      </li>
-      <li><p>{{char.name}}</p></li>
-    </ul>
+    <div v-for="char in roster" :key="char.camel" class="charContainer">
+
+      <ul @click="char.isExpanded = !char.isExpanded">
+        <li class="char">
+          <div class="layer1">
+            <img :src="char.image" />
+          </div>
+          <div class="layer2" :style="{ 'background-color': char.color }"></div>
+        </li>
+        <li><p>{{char.name}}</p></li>
+      </ul>
     
+    <div :id="char.camel" v-if="char.isExpanded">
+      <p>stuff<br />stuff<br />stuff<br />stuff</p>
+    </div>
+      
+    </div>
+
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+//import ComboContainer from './componenets/ComboContainer.vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+    //ComboContainer
   },
   data: function() {
     return {
-      roster: []
+      roster: [],
+      isExpanded: false
     };
   },
   created: function() {
     this.$axios.get("https://dbfzcs.s3.us-east-2.amazonaws.com/roster.json")
     .then(res => {
       console.log(res.data);
+      for(var character in res.data) {
+        res.data[character].isExpanded = false;
+      }
       this.roster = res.data;
     });
   }
@@ -51,10 +66,13 @@ export default {
   display: block;
   margin: 0 auto;
 }
-.roster ul {
+.roster .charContainer {
   width: 12%;
   padding: 0 10px;
   display: inline-block;
+}
+.roster ul {
+  width: 100%;
 }
 .roster ul li {
   list-style: none;
@@ -90,5 +108,8 @@ export default {
 }
 .roster ul .char .layer1 img {
   height: 100%;
+}
+.expanded-menu {
+  visibility: hidden;
 }
 </style>
