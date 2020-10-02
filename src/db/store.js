@@ -4,7 +4,7 @@ import axios from "axios";
 
 Vue.use(Vuex);
 
-export default () => new Vuex.Store({
+export default new Vuex.Store({
     state: () => ({
         roster: [],
         selectedCharacter: null
@@ -25,7 +25,7 @@ export default () => new Vuex.Store({
     },
 
     actions: {
-        "roseter.fetchAll": function(context) {
+        getFullRoster(context) {
             if (context.state.roster.length)
                 return Promise.resolve();
 

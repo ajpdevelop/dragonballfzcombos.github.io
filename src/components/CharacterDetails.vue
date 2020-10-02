@@ -9,7 +9,7 @@
 <script>
 export default {
     computed: {
-        character(){
+        character() {
             return this.$store.state.selectedCharacter;
         }
     }

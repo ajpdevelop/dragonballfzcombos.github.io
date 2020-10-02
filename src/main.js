@@ -1,12 +1,8 @@
 import Vue from 'vue/dist/vue';
-
-Vue.config.productionTip = false
-
-import createStore from "./db/store";
-const store = createStore();
-
+import store from "./db/store";
 import App from './App.vue'
 
+Vue.config.productionTip = false
 
 global.VueApp = new Vue({
     render: h => h(App),

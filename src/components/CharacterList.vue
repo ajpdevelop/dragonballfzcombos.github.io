@@ -1,10 +1,17 @@
 <template>
     <div>
-        <div v-for="character in roster" :key="character.camel" @click="selectCharacter(character)" class="character col s4" :class="{selected: character.isSelected}">
+        
+        <div v-for="character in roster" :key="character.camel" 
+            @click="selectCharacter(character)" 
+            class="character col s4" :class="{selected: character.isSelected}">
+            
             <div class="slant-bg" :style="{ 'background-color': character.color }"></div>
+            
             <img :src="character.image" />
+            
             <p :style="{ 'color': character.color }">{{character.name}}</p>
         </div>
+
     </div>
 </template>
 
@@ -40,6 +47,10 @@
 
 <script>
 export default {
+    data: () => ({
+        
+    }),
+
     computed: {
         roster() {
             return this.$store.state.roster;
@@ -53,7 +64,7 @@ export default {
     },
     
     mounted() {
-        this.$store.dispatch("roseter.fetchAll");
+        this.$store.dispatch("getFullRoster");
     }
 }
 </script>
