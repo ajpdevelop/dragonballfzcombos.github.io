@@ -1,11 +1,10 @@
-import Vue from 'vue'
+import Vue from 'vue/dist/vue';
+import store from "./db/store";
 import App from './App.vue'
-import axios from 'axios'
 
 Vue.config.productionTip = false
 
-Vue.prototype.$axios = axios
-
-new Vue({
-  render: h => h(App),
+global.VueApp = new Vue({
+    render: h => h(App),
+    store
 }).$mount('#app')
