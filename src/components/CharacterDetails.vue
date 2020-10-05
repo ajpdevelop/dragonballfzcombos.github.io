@@ -4,9 +4,9 @@
             <div v-text="character.camel"></div>
             <div v-text="character.name"></div>
             <div v-text="character.color"></div>
+        
+            <ComboContainer :character="character" />
         </div>
-
-        <ComboContainer :character="this.character" />
     </div>
 </template>
 
