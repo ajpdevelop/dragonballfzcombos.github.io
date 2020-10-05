@@ -24,8 +24,6 @@
 import YouTubePlayer from 'youtube-player';
 
 var YTPlayer;
-var player;
-var done = false;
 
 export default {
     props: {
@@ -37,7 +35,9 @@ export default {
         loopStart: 0.16,
         loopEnd: 1.05,
         currentTime: null,
-        checkInterval: null
+        checkInterval: null,
+        player: null,
+        done: false
     }},
     computed: {
         character() {
@@ -55,27 +55,29 @@ export default {
     },
     watch: {
         loopStart() {
-            player.seekTo(this.loopStartSeconds, true);
+            this.player.seekTo(this.loopStartSeconds, true);
         }
     },
     methods: {
         onPlayerReady(event) {
             //event.target.playVideo();
-            this.duration = player.getDuration()/60;
         },
         onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING && !done) {
+            this.player.getDuration().then(d => this.duration = (d/60));
+
+            if (event.data == YT.PlayerState.PLAYING && !this.done) {
                 var self = this;
                 console.log("starting loop");
                 
                 this.checkInterval = setInterval(function() {
-                    if (player.getCurrentTime)  
-                    self.currentTime = player.getCurrentTime();
+                    self.player.getCurrentTime().then(ct => {
+                        self.currentTime = ct;
                 
-                    if (self.loopStart && self.loopEnd && self.currentTime > self.loopEndSeconds) {
-                        console.log("here");
-                        player.seekTo(self.loopStartSeconds, true);
-                    }
+                        if (self.loopStart && self.loopEnd && self.currentTime > self.loopEndSeconds) {
+                            console.log("here");
+                            self.player.seekTo(self.loopStartSeconds, true);
+                        }
+                    });
                 }, 250)
             } else if (event.data != YT.PlayerState.PLAYING) {
                 console.log("ending loop");
@@ -83,21 +85,21 @@ export default {
             }
         },
         playVideo() {
-            player.seekTo(this.loopStartSeconds, true);
-            player.playVideo();
+            this.player.seekTo(this.loopStartSeconds, true);
+            this.player.playVideo();
         },
         stopVideo() {
-            player.stopVideo();
+            this.player.stopVideo();
         },
         getPlayer() {
-            return player;
+            return this.player;
         }
     },
     mounted() {
-        player = YouTubePlayer(this.playerId);
-        player.loadVideoById(this.videoId);
-        player.on("ready", ev => this.onPlayerReady(ev));
-        player.on("stateChange", ev => this.onPlayerStateChange(ev));
+        this.player = YouTubePlayer(this.playerId);
+        this.player.loadVideoById(this.videoId);
+        this.player.on("ready", ev => this.onPlayerReady(ev));
+        this.player.on("stateChange", ev => this.onPlayerStateChange(ev));
     }
 }
 /* eslint-enable */
