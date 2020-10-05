@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-for="curCombo in character" :key="curCombo.name">
+    <div v-for="combo in character.combos" :key="combo.video">
       <div>
-        <p v-text="curCombo.name"></p>
-        <VideoPlayer :comboId="curCombo.video" />
+        <p v-text="combo.name"></p>
+        <VideoPlayer :combo-id="combo.video" />
       </div>
     </div>
   </div>
