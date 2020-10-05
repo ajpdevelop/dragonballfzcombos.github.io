@@ -1,13 +1,25 @@
 <template>
-  <div class="hello" style="width:100%;">
-    <p>COMBO<br />COMBO<br />COMBO</p>
+  <div>
+    <div v-for="curCombo in character" :key="curCombo.name">
+      <div>
+        <p v-text="curCombo.name"></p>
+        <VideoPlayer :comboId="curCombo.video" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import VideoPlayer from './VideoPlayer.vue';
+
 export default {
-  name: 'ComboContainer',
-  props: {
+  components: { 
+      VideoPlayer
+  },
+  computed: {
+      character() {
+          return this.$store.state.selectedCharacter;
+      }
   }
 }
 </script>

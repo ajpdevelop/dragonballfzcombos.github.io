@@ -1,83 +1,110 @@
 <template>
-  <div class="hello" style="width:100%;">
-    <h1>{{ msg }}</h1>
-    <!-- <div style="width:100%; display: flex; justify-content: space-between;">
-      <p>
-        <b>This is a test combo for template.</b>
-        <br />
-        <img style="width:400px; border: 1px solid; margin: 8px 0" src="../assets/testcombo.gif" />
-        <br />
-        <b>L,M,2M, 236S</b>
-      </p>
-      <p>
-        <b>This is a test combo for template.</b>
-        <br />
-        <img style="width:400px; border: 1px solid; margin: 8px 0" src="../assets/testcombo.gif" />
-        <br />
-        <b>L,M,2M, 236S</b>
-      </p>
-      <p>
-        <b>This is a test combo for template.</b>
-        <br />
-        <img style="width:400px; border: 1px solid; margin: 8px 0" src="../assets/testcombo.gif" />
-        <br />
-        <b>L,M,2M, 236S</b>
-      </p>
-      <p>
-        <b>This is a test combo for template.</b>
-        <br />
-        <img style="width:400px; border: 1px solid; margin: 8px 0" src="../assets/testcombo.gif" />
-        <br />
-        <b>L,M,2M, 236S</b>
-      </p>
-    </div>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul> -->
+  <div id="app">
+  <div class="controls">
+    <input v-model="videoId">
+    <button @click="stopVideo">stop</button>
+    <button @click="playVideo">Play</button><br />
+    <input type="range" min="0" :max="duration" step="0.01" v-model="loopStart"><input v-model="loopStart"><br />
+    <input type="range" min="0" :max="duration" step="0.01" v-model="loopEnd"><input v-model="loopEnd"><br />
   </div>
+  
+  <div id="player"></div>
+  
+  <div class="info">
+    Video: <span v-text="videoId"></span><br />
+    Duration: <span v-text="duration"></span><br />
+    Current Time: <span v-text="currentTime"></span><br />
+    Loop Seconds: <span v-text="loopStartSeconds"></span> <span v-text="loopEndSeconds"></span><br />
+  </div>
+</div>
 </template>
-
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
+/* eslint-disable */
+    export default {
+        props: [this.comboId],
+        data: () => ({
+            videoId: this.comboId,
+            duration: 0,
+            loopStart: 0.16,
+            loopEnd: 1.05,
+            currentTime: null,
+            checkInterval: null
+        }),
+        computed: {
+            character() {
+                return this.$store.state.selectedCharacter;
+            },
+            loopStartSeconds() {
+                return this.loopStart * 60;  
+            },
+            loopEndSeconds() {
+                return this.loopEnd * 60;
+            }
+        },
+        watch: {
+            loopStart() {
+                player.seekTo(this.loopStartSeconds, true);
+            }
+        },
+        methods: {
+          onPlayerReady(event) {
+              //event.target.playVideo();
+              this.duration = player.getDuration()/60;
+          },
+          onPlayerStateChange(event) {
+              if (event.data == YT.PlayerState.PLAYING && !done) {
+                  var self = this;
+                  console.log("starting loop");
+                  
+                  this.checkInterval = setInterval(function() {
+                      if (player.getCurrentTime)  
+                        self.currentTime = player.getCurrentTime();
+                    
+                      if (self.loopStart && self.loopEnd && self.currentTime > self.loopEndSeconds) {
+                          console.log("here");
+                          player.seekTo(self.loopStartSeconds, true);
+                      }
+                  }, 250)
+              } else if (event.data != YT.PlayerState.PLAYING) {
+                  console.log("ending loop");
+                  clearInterval(this.checkInterval);
+              }
+          },
+          playVideo() {
+                player.seekTo(this.loopStartSeconds, true);
+                player.playVideo();
+          },
+          stopVideo() {
+              player.stopVideo();
+          }
+        },
+        mounted() {
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player("player", {
+                    height: "390",
+                    width: "640",
+                    videoId: this.videoId,
+                    events: {
+                        onReady: this.onPlayerReady,
+                        onStateChange: this.onPlayerStateChange
+                    }
+                })
+            };
+        }
+    }
 
+  var player;
+  var done = false;
+  var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+/* eslint-disable */
+</script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+input[type='range'] {
+  display: block;
+  width: 100%;
 }
 </style>
