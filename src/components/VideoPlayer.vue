@@ -4,11 +4,18 @@
         <div class="controls">
             <div class="buttons">
                 <button @click="playVideo">Play</button>
-                <button @click="stopVideo">Stop</button>
+                <button @click="stopVideo">Pause</button>
+                <button @click="resumeVideo">Resume</button>
             </div>
             <div class="inputs">
-                <input class="loopInput" v-model="loopStart" placeholder="Start">
-                <input class="loopInput" v-model="loopEnd" placeholder="End">
+                <div class="anInput">
+                    <input class="loopInput" v-model="loopStart" placeholder="Start">
+                    <span>sec</span>
+                </div>
+                <div class="anInput">
+                    <input class="loopInput" v-model="loopEnd" placeholder="End">
+                    <span>sec</span>
+                </div>
             </div>
         </div>
 
@@ -16,8 +23,8 @@
 
         <div class="info">
             <!-- Video: <span v-text="videoId"></span><br /> -->
-            Duration: <span v-text="duration"></span>
-            Current Time: <span v-text="currentTime"></span>
+            Duration: <span v-text="duration + ' min'"></span>
+            Current Time: <span v-text="currentTime + ' s'"></span>
             Loop Seconds: <span v-text="loopStartSeconds + ' s - ' + loopEndSeconds + ' s'"></span>
         </div>
     </div>
@@ -49,10 +56,10 @@ export default {
             return "player" + this.videoId;
         },
         loopStartSeconds() {
-            return this.loopStart * 60;  
+            return this.loopStart;  
         },
         loopEndSeconds() {
-            return this.loopEnd * 60;
+            return this.loopEnd;
         }
     },
     watch: {
@@ -89,8 +96,11 @@ export default {
             this.player.seekTo(this.loopStartSeconds, true);
             this.player.playVideo();
         },
+        resumeVideo() {
+            this.player.playVideo();
+        },
         stopVideo() {
-            this.player.stopVideo();
+            this.player.pauseVideo();
         },
         getPlayer() {
             return this.player;
@@ -127,16 +137,30 @@ div.controls {
 .inputs {
     vertical-align: top;
 }
+.anInput {
+    display: inline-block;
+    margin-left: 26px;
+    height: 100%;
+    border: 1px solid;
+}
+.anInput span{
+    display:inline-block;
+    height:  100%;
+    font-size: 16px;
+    height: 100%;
+    padding: 0 8px 0 0;
+    text-align: center;
+}
 .inputs input {
     width: 70px;
     font-size: 24px;
-    height: 91%;
-    padding: 0 4px;
-    margin: 0 0 0 26px;
-    border: 1px solid;
+    height: 100%;
+    padding: 0;
+    margin: 0;
     text-align: center;
+    border: 0;
 }
-.inputs input:first-child {
+.inputs div:first-child {
     margin-left: 0;
 }
 ::placeholder {

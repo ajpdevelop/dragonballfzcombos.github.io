@@ -1,12 +1,6 @@
 <template>
     <div>
-        <!-- Listing details from object. Not needed right now.
-            <div v-if="character">
-            <div v-text="character.camel"></div>
-            <div v-text="character.name"></div>
-            <div v-text="character.color"></div>
-        </div>
-        -->
+            <h4 v-text="character.name"></h4>
         <ComboContainer :character="this.character" />
     </div>
 </template>
@@ -25,3 +19,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    h4 {
+        font-weight: bold;
+    }
+</style>
