@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-for="combo in character.combos" :key="combo.video">
-      <div>
-        <p v-text="combo.name"></p>
+      <div class="comboContainer">
+        <h3 v-text="combo.name"></h3>
         <VideoPlayer :combo-id="combo.video" />
       </div>
     </div>
@@ -27,7 +27,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
-  margin: 40px 0 0;
+  margin: 0;
+  font-size: 38px;
+  font-weight: bold;
 }
 ul {
   list-style-type: none;
@@ -39,5 +41,9 @@ li {
 }
 a {
   color: #42b983;
+}
+.comboContainer {
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 12px;
 }
 </style>

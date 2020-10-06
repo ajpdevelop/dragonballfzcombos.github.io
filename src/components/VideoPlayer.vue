@@ -1,20 +1,20 @@
 <template>
     <div id="app">
+        <div :id="playerId"></div>
         <div class="controls">
-            <input v-model="videoId">
             <button @click="stopVideo">stop</button>
-            <button @click="playVideo">Play</button><br />
-            <input type="range" min="0" :max="duration" step="0.01" v-model="loopStart"><input v-model="loopStart"><br />
-            <input type="range" min="0" :max="duration" step="0.01" v-model="loopEnd"><input v-model="loopEnd"><br />
+            <button @click="playVideo">Play</button>
+            <!-- <input class="loopInput" type="range" min="0" :max="duration" step="0.01" v-model="loopStart"> --><input class="loopInput" v-model="loopStart">
+            <!-- <input type="range" min="0" :max="duration" step="0.01" v-model="loopEnd"> --><input class="loopInput" v-model="loopEnd"><br />
         </div>
 
-        <div :id="playerId"></div>
+        
 
         <div class="info">
-            Video: <span v-text="videoId"></span><br />
-            Duration: <span v-text="duration"></span><br />
+            <!-- Video: <span v-text="videoId"></span><br /> -->
+            Duration: <span v-text="duration"></span>
             Current Time: <span v-text="currentTime"></span><br />
-            Loop Seconds: <span v-text="loopStartSeconds"></span> <span v-text="loopEndSeconds"></span><br />
+            Loop Seconds: <span v-text="loopStartSeconds + ' s - '"></span><span v-text="loopEndSeconds + ' s'"></span><br />
         </div>
     </div>
 </template>
@@ -22,11 +22,7 @@
 <script>
 /* eslint-disable */
 import YouTubePlayer from 'youtube-player';
-
 var YTPlayer;
-var player;
-var done = false;
-
 export default {
     props: {
         comboId: String
@@ -37,7 +33,9 @@ export default {
         loopStart: 0.16,
         loopEnd: 1.05,
         currentTime: null,
-        checkInterval: null
+        checkInterval: null,
+        player: null,
+        done: false
     }},
     computed: {
         character() {
@@ -55,27 +53,28 @@ export default {
     },
     watch: {
         loopStart() {
-            player.seekTo(this.loopStartSeconds, true);
+            this.player.seekTo(this.loopStartSeconds, true);
         }
     },
     methods: {
         onPlayerReady(event) {
             //event.target.playVideo();
-            this.duration = player.getDuration()/60;
         },
         onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING && !done) {
+            this.player.getDuration().then(d => this.duration = (d/60).toFixed(2));
+            if (event.data == YT.PlayerState.PLAYING && !this.done) {
                 var self = this;
                 console.log("starting loop");
                 
                 this.checkInterval = setInterval(function() {
-                    if (player.getCurrentTime)  
-                    self.currentTime = player.getCurrentTime();
+                    self.player.getCurrentTime().then(ct => {
+                        self.currentTime = ct.toFixed(2);
                 
-                    if (self.loopStart && self.loopEnd && self.currentTime > self.loopEndSeconds) {
-                        console.log("here");
-                        player.seekTo(self.loopStartSeconds, true);
-                    }
+                        if (self.loopStart && self.loopEnd && self.currentTime > self.loopEndSeconds) {
+                            console.log("here");
+                            self.player.seekTo(self.loopStartSeconds, true);
+                        }
+                    });
                 }, 250)
             } else if (event.data != YT.PlayerState.PLAYING) {
                 console.log("ending loop");
@@ -83,29 +82,46 @@ export default {
             }
         },
         playVideo() {
-            player.seekTo(this.loopStartSeconds, true);
-            player.playVideo();
+            this.player.seekTo(this.loopStartSeconds, true);
+            this.player.playVideo();
         },
         stopVideo() {
-            player.stopVideo();
+            this.player.stopVideo();
         },
         getPlayer() {
-            return player;
+            return this.player;
         }
     },
     mounted() {
-        player = YouTubePlayer(this.playerId);
-        player.loadVideoById(this.videoId);
-        player.on("ready", ev => this.onPlayerReady(ev));
-        player.on("stateChange", ev => this.onPlayerStateChange(ev));
+        this.player = YouTubePlayer(this.playerId);
+        this.player.cueVideoById(this.videoId);
+        this.player.on("ready", ev => this.onPlayerReady(ev));
+        this.player.on("stateChange", ev => this.onPlayerStateChange(ev));
     }
 }
 /* eslint-enable */
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-input[type='range'] {
-  display: block;
-  width: 100%;
+#app {
+    margin: 0;
+}
+div.controls {
+    height: 36px;
+    margin: 0 0 8px 0
+}
+div.controls button {
+    height: 100%;
+}
+input.loopInput {
+    width: 60px;
+    height: 100%;
+    padding: 0 0px;
+    margin: 0 0 0 26px;
+    border: 1px solid;
+    text-align: center;
+}
+div.info {
+    margin: 0 0 8px 0;
 }
 </style>
