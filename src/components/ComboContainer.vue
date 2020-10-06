@@ -3,6 +3,7 @@
     <div class="comboContainer" v-for="combo in character.combos" :key="combo.video">
       <div class="aCombo">
         <h3 v-text="combo.name"></h3>
+        <p class="author">YouTube Channel: <a target="_blank" rel="noopener noreferrer" v-text="combo.author" :href="combo.authorUrl"></a></p>
         <VideoPlayer :combo-id="combo.video" />
       </div>
     </div>
@@ -28,9 +29,18 @@ export default {
 <style scoped>
 h3 {
   margin: 0;
-  font-size: 32px;
+  font-size: 20px;
   font-weight: bold;
-  padding: 8px 0 12px 28px;
+  padding: 8px 0 6px 28px;
+}
+.author {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 0 12px 44px;
+}
+.author a {
+  color: rgb(133, 96, 254);
 }
 ul {
   list-style-type: none;
@@ -41,7 +51,7 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: rgb(133, 96, 254);
 }
 .aCombo {
   border: 2px solid #ccc;
@@ -49,6 +59,6 @@ a {
   margin-bottom: 10px;
 }
 .comboContainer:nth-child(odd) {
-  background-color: rgb(252, 233, 209);
+  background-color:floralwhite;
 }
 </style>
