@@ -120,9 +120,9 @@ export default {
 #app {
     margin: 0;
 }
-div.controls {
+.controls {
     height: 36px;
-    margin: 0 0 8px 0
+    margin: 8px 0 8px 0
 }
 .buttons, .inputs {
     display: inline-block;
