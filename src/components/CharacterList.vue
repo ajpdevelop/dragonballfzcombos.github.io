@@ -1,6 +1,8 @@
 <template>
     <div>
-        
+        <h4 class="listHeader">Select your Fighter!</h4>
+        <hr class="splitHr" />
+        <br />
         <div v-for="character in roster" :key="character.camel" 
             @click="selectCharacter(character)" 
             class="character col s2" :class="{selected: character.isSelected}">
@@ -17,6 +19,15 @@
 </template>
 
 <style>
+.listHeader {
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+.splitHr {
+    width: 80%;
+    color: #ccc;
+}
 .character .imgContainer img { 
     height: 150px;
     display: block;

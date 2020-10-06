@@ -2,10 +2,14 @@
     <div id="app">
         <div :id="playerId"></div>
         <div class="controls">
-            <button @click="stopVideo">stop</button>
-            <button @click="playVideo">Play</button>
-            <!-- <input class="loopInput" type="range" min="0" :max="duration" step="0.01" v-model="loopStart"> --><input class="loopInput" v-model="loopStart">
-            <!-- <input type="range" min="0" :max="duration" step="0.01" v-model="loopEnd"> --><input class="loopInput" v-model="loopEnd"><br />
+            <div class="buttons">
+                <button @click="playVideo">Play</button>
+                <button @click="stopVideo">Stop</button>
+            </div>
+            <div class="inputs">
+                <input class="loopInput" v-model="loopStart" placeholder="Start">
+                <input class="loopInput" v-model="loopEnd" placeholder="End">
+            </div>
         </div>
 
         
@@ -13,8 +17,8 @@
         <div class="info">
             <!-- Video: <span v-text="videoId"></span><br /> -->
             Duration: <span v-text="duration"></span>
-            Current Time: <span v-text="currentTime"></span><br />
-            Loop Seconds: <span v-text="loopStartSeconds + ' s - '"></span><span v-text="loopEndSeconds + ' s'"></span><br />
+            Current Time: <span v-text="currentTime"></span>
+            Loop Seconds: <span v-text="loopStartSeconds + ' s - ' + loopEndSeconds + ' s'"></span>
         </div>
     </div>
 </template>
@@ -30,8 +34,8 @@ export default {
     data: function() { return {
         videoId: this.comboId,
         duration: 0,
-        loopStart: 0.16,
-        loopEnd: 1.05,
+        loopStart: null,
+        loopEnd: null,
         currentTime: null,
         checkInterval: null,
         player: null,
@@ -110,18 +114,42 @@ div.controls {
     height: 36px;
     margin: 0 0 8px 0
 }
-div.controls button {
+.buttons, .inputs {
+    display: inline-block;
     height: 100%;
 }
-input.loopInput {
-    width: 60px;
+.buttons button {
     height: 100%;
-    padding: 0 0px;
+    margin-right: 26px;
+    font-size: 24px;
+    padding: 0px 12px 0px 12px;
+}
+.inputs {
+    vertical-align: top;
+}
+.inputs input {
+    width: 70px;
+    font-size: 24px;
+    height: 91%;
+    padding: 0 4px;
     margin: 0 0 0 26px;
     border: 1px solid;
     text-align: center;
 }
-div.info {
-    margin: 0 0 8px 0;
+.inputs input:first-child {
+    margin-left: 0;
+}
+::placeholder {
+  color: slategray ;
+  opacity: 1;
+}
+.info {
+    font-size: 18px;
+}
+.info span {
+    margin: 0 10px 0 0;
+}
+.info span:last-child {
+    margin: 0;
 }
 </style>
