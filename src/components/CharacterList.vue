@@ -3,21 +3,22 @@
         
         <div v-for="character in roster" :key="character.camel" 
             @click="selectCharacter(character)" 
-            class="character col s4" :class="{selected: character.isSelected}">
+            class="character col s2" :class="{selected: character.isSelected}">
             
-            <div class="slant-bg" :style="{ 'background-color': character.color }"></div>
+            <div class="imgContainer">
+                <div class="slant-bg" :style="{ 'background-color': character.color }"></div>
+                <img :src="character.image" />
+            </div>
             
-            <img :src="character.image" />
-            
-            <p :style="{ 'color': character.color }">{{character.name}}</p>
+            <!--<p>{{character.name}}</p>-->
         </div>
 
     </div>
 </template>
 
 <style>
-.character img { 
-    height: 250px;
+.character .imgContainer img { 
+    height: 150px;
     display: block;
     margin: 0 auto;
 }
@@ -25,24 +26,37 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
 }
-.character .slant-bg {
+.character .imgContainer { 
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+}
+.character .imgContainer .slant-bg {
   position: absolute;
-  width: 100px;
+  width: 150px;
   top: -60%;
   left: -50%;
-  height: 900px;
+  height: 590px;
   z-index: -1;
-  transform: rotate(63deg);
+  transform: rotate(50deg);
 }
 .character p {
+    text-align: center;
     font-weight: bold;
-    font-size: 130%;
-    min-height: 60px;
+    font-size: 100%;
+    margin: 0;
+    white-space: nowrap;
 }
 .character.selected {
     opacity: .6;
 }
+
 </style>
 
 <script>

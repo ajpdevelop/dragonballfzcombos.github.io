@@ -1,83 +1,127 @@
 <template>
-  <div class="hello" style="width:100%;">
-    <h1>{{ msg }}</h1>
-    <!-- <div style="width:100%; display: flex; justify-content: space-between;">
-      <p>
-        <b>This is a test combo for template.</b>
-        <br />
-        <img style="width:400px; border: 1px solid; margin: 8px 0" src="../assets/testcombo.gif" />
-        <br />
-        <b>L,M,2M, 236S</b>
-      </p>
-      <p>
-        <b>This is a test combo for template.</b>
-        <br />
-        <img style="width:400px; border: 1px solid; margin: 8px 0" src="../assets/testcombo.gif" />
-        <br />
-        <b>L,M,2M, 236S</b>
-      </p>
-      <p>
-        <b>This is a test combo for template.</b>
-        <br />
-        <img style="width:400px; border: 1px solid; margin: 8px 0" src="../assets/testcombo.gif" />
-        <br />
-        <b>L,M,2M, 236S</b>
-      </p>
-      <p>
-        <b>This is a test combo for template.</b>
-        <br />
-        <img style="width:400px; border: 1px solid; margin: 8px 0" src="../assets/testcombo.gif" />
-        <br />
-        <b>L,M,2M, 236S</b>
-      </p>
+    <div id="app">
+        <div :id="playerId"></div>
+        <div class="controls">
+            <button @click="stopVideo">stop</button>
+            <button @click="playVideo">Play</button>
+            <!-- <input class="loopInput" type="range" min="0" :max="duration" step="0.01" v-model="loopStart"> --><input class="loopInput" v-model="loopStart">
+            <!-- <input type="range" min="0" :max="duration" step="0.01" v-model="loopEnd"> --><input class="loopInput" v-model="loopEnd"><br />
+        </div>
+
+        
+
+        <div class="info">
+            <!-- Video: <span v-text="videoId"></span><br /> -->
+            Duration: <span v-text="duration"></span>
+            Current Time: <span v-text="currentTime"></span><br />
+            Loop Seconds: <span v-text="loopStartSeconds + ' s - '"></span><span v-text="loopEndSeconds + ' s'"></span><br />
+        </div>
     </div>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul> -->
-  </div>
 </template>
 
 <script>
+/* eslint-disable */
+import YouTubePlayer from 'youtube-player';
+var YTPlayer;
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+    props: {
+        comboId: String
+    },
+    data: function() { return {
+        videoId: this.comboId,
+        duration: 0,
+        loopStart: 0.16,
+        loopEnd: 1.05,
+        currentTime: null,
+        checkInterval: null,
+        player: null,
+        done: false
+    }},
+    computed: {
+        character() {
+            return this.$store.state.selectedCharacter;
+        },
+        playerId() {
+            return "player" + this.videoId;
+        },
+        loopStartSeconds() {
+            return this.loopStart * 60;  
+        },
+        loopEndSeconds() {
+            return this.loopEnd * 60;
+        }
+    },
+    watch: {
+        loopStart() {
+            this.player.seekTo(this.loopStartSeconds, true);
+        }
+    },
+    methods: {
+        onPlayerReady(event) {
+            //event.target.playVideo();
+        },
+        onPlayerStateChange(event) {
+            this.player.getDuration().then(d => this.duration = (d/60).toFixed(2));
+            if (event.data == YT.PlayerState.PLAYING && !this.done) {
+                var self = this;
+                console.log("starting loop");
+                
+                this.checkInterval = setInterval(function() {
+                    self.player.getCurrentTime().then(ct => {
+                        self.currentTime = ct.toFixed(2);
+                
+                        if (self.loopStart && self.loopEnd && self.currentTime > self.loopEndSeconds) {
+                            console.log("here");
+                            self.player.seekTo(self.loopStartSeconds, true);
+                        }
+                    });
+                }, 250)
+            } else if (event.data != YT.PlayerState.PLAYING) {
+                console.log("ending loop");
+                clearInterval(this.checkInterval);
+            }
+        },
+        playVideo() {
+            this.player.seekTo(this.loopStartSeconds, true);
+            this.player.playVideo();
+        },
+        stopVideo() {
+            this.player.stopVideo();
+        },
+        getPlayer() {
+            return this.player;
+        }
+    },
+    mounted() {
+        this.player = YouTubePlayer(this.playerId);
+        this.player.cueVideoById(this.videoId);
+        this.player.on("ready", ev => this.onPlayerReady(ev));
+        this.player.on("stateChange", ev => this.onPlayerStateChange(ev));
+    }
 }
+/* eslint-enable */
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+#app {
+    margin: 0;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+div.controls {
+    height: 36px;
+    margin: 0 0 8px 0
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+div.controls button {
+    height: 100%;
 }
-a {
-  color: #42b983;
+input.loopInput {
+    width: 60px;
+    height: 100%;
+    padding: 0 0px;
+    margin: 0 0 0 26px;
+    border: 1px solid;
+    text-align: center;
+}
+div.info {
+    margin: 0 0 8px 0;
 }
 </style>

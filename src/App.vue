@@ -23,6 +23,12 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 100%;
+    max-width: 1920px;
+  }
+}
 </style>
 
 <script>
