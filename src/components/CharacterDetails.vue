@@ -1,6 +1,6 @@
 <template>
     <div>
-            <h4 v-text="character.name"></h4>
+        <h4 v-text="character.name"></h4>
         <ComboContainer :character="this.character" />
     </div>
 </template>
