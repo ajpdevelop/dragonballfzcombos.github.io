@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-for="combo in character.combos" :key="combo.video">
-      <div class="comboContainer">
+    <div class="comboContainer" v-for="combo in character.combos" :key="combo.video">
+      <div class="aCombo">
         <h3 v-text="combo.name"></h3>
         <VideoPlayer :combo-id="combo.video" />
       </div>
@@ -28,8 +28,9 @@ export default {
 <style scoped>
 h3 {
   margin: 0;
-  font-size: 38px;
+  font-size: 32px;
   font-weight: bold;
+  padding: 8px 0 12px 28px;
 }
 ul {
   list-style-type: none;
@@ -42,8 +43,12 @@ li {
 a {
   color: #42b983;
 }
-.comboContainer {
-  border-bottom: 2px solid #ccc;
-  margin-bottom: 12px;
+.aCombo {
+  border: 2px solid #ccc;
+  padding-bottom: 12px;
+  margin-bottom: 10px;
+}
+.comboContainer:nth-child(odd) {
+  background-color: rgb(252, 233, 209);
 }
 </style>
