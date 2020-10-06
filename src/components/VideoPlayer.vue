@@ -8,10 +8,12 @@
                 <button @click="resumeVideo">Resume</button>
             </div>
             <div class="inputs">
+                <p>Loop video from</p>
                 <div class="anInput">
                     <input class="loopInput" v-model="loopStart" placeholder="Start">
                     <span>sec</span>
                 </div>
+                <p>to</p>
                 <div class="anInput">
                     <input class="loopInput" v-model="loopEnd" placeholder="End">
                     <span>sec</span>
@@ -130,16 +132,31 @@ export default {
 }
 .buttons button {
     height: 100%;
-    margin-right: 26px;
+    margin-right: 20px;
     font-size: 24px;
     padding: 0px 12px 0px 12px;
+    border-radius: 10px;
+}
+button:focus {
+    background-color: #e8c56a;
+}
+.inputs input:focus {
+    box-shadow: none;
+    border: 0;
 }
 .inputs {
     vertical-align: top;
 }
+.inputs p {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+}
 .anInput {
     display: inline-block;
-    margin-left: 26px;
+    margin: 0 8px;
     height: 100%;
     border: 1px solid;
 }
@@ -159,9 +176,6 @@ export default {
     margin: 0;
     text-align: center;
     border: 0;
-}
-.inputs div:first-child {
-    margin-left: 0;
 }
 ::placeholder {
   color: slategray ;
