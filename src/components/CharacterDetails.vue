@@ -23,5 +23,7 @@ export default {
 <style scoped>
     h4 {
         font-weight: bold;
+        font-family: "LeviReBrushed", Helvetica, Arial;
+        text-shadow: 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22);
     }
 </style>

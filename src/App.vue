@@ -46,3 +46,14 @@ export default {
   }
 };
 </script>
+
+<style>
+  @font-face {
+    font-family: "LeviReBrushed";
+    src: local("LeviReBrushed"),
+    url(./fonts/LeviReBrushed.ttf) format("truetype");
+  }
+  .container{
+    background-image: url("./fonts/LeviReBrushed.ttf");
+  }
+</style>
