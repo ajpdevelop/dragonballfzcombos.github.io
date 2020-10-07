@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <app-header />
+    <!-- <app-header /> -->
 
     <column-wrapper>
       <template v-slot:list>
@@ -35,11 +35,11 @@
 import CharacterDetails from "./components/CharacterDetails";
 import CharacterList from "./components/CharacterList";
 import ColumnWrapper from "./components/ColumnWrapper";
-import AppHeader from "./components/AppHeader";
+//import AppHeader from "./components/AppHeader";
 
 export default {
   components: {
-    AppHeader,
+    //AppHeader,
     CharacterList,
     CharacterDetails, 
     ColumnWrapper
@@ -52,8 +52,5 @@ export default {
     font-family: "LeviReBrushed";
     src: local("LeviReBrushed"),
     url(./fonts/LeviReBrushed.ttf) format("truetype");
-  }
-  .container{
-    background-image: url("./fonts/LeviReBrushed.ttf");
   }
 </style>

@@ -2,7 +2,6 @@
     <div>
         <h4 class="listHeader">Select your Fighter!</h4>
         <hr class="splitHr" />
-        <br />
         <div v-for="character in roster" :key="character.camel" 
             @click="selectCharacter(character)" 
             class="character col s2" :class="{selected: character.isSelected}">
@@ -21,10 +20,11 @@
 <style>
 .listHeader {
     font-family: "LeviReBrushed", Helvetica, Arial;
+    font-size: 52px;
     text-shadow: 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22);
-    font-weight: bold;
     width: 100%;
     text-align: center;
+
 }
 .splitHr {
     width: 80%;
