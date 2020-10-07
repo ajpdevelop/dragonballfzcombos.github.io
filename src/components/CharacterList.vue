@@ -20,6 +20,8 @@
 
 <style>
 .listHeader {
+    font-family: "LeviReBrushed", Helvetica, Arial;
+    text-shadow: 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22);
     font-weight: bold;
     width: 100%;
     text-align: center;
