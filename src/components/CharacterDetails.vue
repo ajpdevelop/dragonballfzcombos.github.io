@@ -24,6 +24,7 @@ export default {
     h4 {
         font-size: 46px;
         font-family: "LeviReBrushed", Helvetica, Arial;
-        text-shadow: 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22);
+        color: var(--v-secondary-base);
+        text-shadow: 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base);
     }
 </style>

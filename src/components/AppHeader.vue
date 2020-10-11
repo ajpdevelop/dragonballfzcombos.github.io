@@ -1,15 +1,36 @@
 <template>
-    <div class="row">
-      <h2>Dragonball Fighterz Combos</h2>
-    </div>
+  <v-app id="inspire">
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+    >
+      <!--  -->
+    </v-navigation-drawer>
+
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Application</v-toolbar-title>
+    </v-app-bar>
+
+    <v-main>
+      <!--  -->
+    </v-main>
+  </v-app>
 </template>
 
-<style scoped>
-  .row {
-    text-align: center;
+<script>
+  import { VApp, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VMain } from "vuetify/lib/components";
+
+  export default {
+    data: () => ({ drawer: false }),
+    components: {
+      VApp,
+      VNavigationDrawer,
+      VAppBar,
+      VAppBarNavIcon,
+      VToolbarTitle,
+      VMain
+    },
   }
-  h2 {
-    font-family: "LeviReBrushed", Helvetica, Arial;
-    text-shadow: 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22);
-  }
-</style>
+</script>

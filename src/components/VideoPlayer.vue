@@ -23,7 +23,7 @@
 
         
 
-        <div class="info">
+        <div class="timeInfo">
             <!-- Video: <span v-text="videoId"></span><br /> -->
             Duration: <span v-text="duration + ' min'"></span>
             Current Time: <span v-text="currentTime + ' s'"></span>
@@ -138,7 +138,7 @@ export default {
     border-radius: 10px;
 }
 button:focus {
-    background-color: #e8c56a;
+    background-color: var(--v-accent-base);
 }
 .inputs input:focus {
     box-shadow: none;
@@ -176,18 +176,18 @@ button:focus {
     margin: 0;
     text-align: center;
     border: 0;
+    color: var(--v-secondary-base);
 }
 ::placeholder {
-  color: slategray ;
   opacity: 1;
 }
-.info {
+.timeInfo {
     font-size: 18px;
 }
-.info span {
+.timeInfo span {
     margin: 0 10px 0 0;
 }
-.info span:last-child {
+.timeInfo span:last-child {
     margin: 0;
 }
 </style>
