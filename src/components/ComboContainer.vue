@@ -32,15 +32,17 @@ h3 {
   font-size: 20px;
   font-weight: bold;
   padding: 8px 0 6px 28px;
+  color: var(--v-accent-base);
 }
 .author {
   margin: 0;
   font-size: 18px;
   font-weight: bold;
   padding: 0 0 12px 44px;
+  color: var(--v-accent-base);
 }
 .author a {
-  color: rgb(133, 96, 254);
+  color: var(--v-secondary-base);
 }
 ul {
   list-style-type: none;
@@ -51,14 +53,14 @@ li {
   margin: 0 10px;
 }
 a {
-  color: rgb(133, 96, 254);
+  color: var(--v-secondar-base);
 }
 .aCombo {
-  border: 2px solid #ccc;
+  border: 2px solid var(--v-secondary-base);
   padding-bottom: 12px;
   margin-bottom: 10px;
 }
 .comboContainer:nth-child(odd) {
-  background-color: var(--v-accent);
+  background-color: var(--v-primary-base);
 }
 </style>

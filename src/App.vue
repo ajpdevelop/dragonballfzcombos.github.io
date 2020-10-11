@@ -1,13 +1,20 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" width="40%" app>
+    <v-navigation-drawer class="nav-drawer" v-model="drawer" width="40%" app>
         <character-list />
     </v-navigation-drawer>
 
-    <v-app-bar app>
+    <v-app-bar dense app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title class="navHeader">Dragonball FighterZ Combos!</v-toolbar-title>
+      
+      <div class="flex-grow-1"></div>
 
-      <v-toolbar-title>Dragonball FighterZ Combos!</v-toolbar-title>
+      <v-toolbar-items>
+        <v-btn>About</v-btn>
+        <v-btn>Suggestions</v-btn>
+        <v-btn>Contact</v-btn>
+      </v-toolbar-items>
     </v-app-bar>
 
     <v-main>
@@ -25,14 +32,14 @@
 <script>
 import CharacterDetails from "./components/CharacterDetails";
 import CharacterList from "./components/CharacterList";
-import { VApp, VMain, VContainer, VRow, VCol, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle } from "vuetify/lib/components";
+import { VApp, VMain, VContainer, VRow, VCol, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn } from "vuetify/lib/components";
 
 export default {
   data: () => ({ drawer: null }),
   components: {
     CharacterList,
     CharacterDetails,
-    VApp, VMain, VContainer, VRow, VCol, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle
+    VApp, VMain, VContainer, VRow, VCol, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn
   }
 };
 </script>
@@ -46,18 +53,25 @@ export default {
 </style>
 
 <style>
+.nav-drawer {
+  background-color: var(--v-primary-base)!important;
+}
+.v-main {
+  background-color: var(--v-primary-base);
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
-@media only screen and (min-width: 993px) {
-  .container {
-    width: 100%;
-    max-width: 1920px;
-  }
+.v-app-bar {
+  background-color: var(--v-secondary-base)!important;
+}
+.navHeader {
+  color: var(--v-darker-base);
+  font-family: "LeviReBrushed", Helvetica, Arial;
+  font-size: 220%;
 }
 </style>
