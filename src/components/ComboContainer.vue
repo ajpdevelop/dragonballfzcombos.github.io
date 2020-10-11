@@ -59,6 +59,6 @@ a {
   margin-bottom: 10px;
 }
 .comboContainer:nth-child(odd) {
-  background-color:floralwhite;
+  background-color: var(--v-accent);
 }
 </style>
