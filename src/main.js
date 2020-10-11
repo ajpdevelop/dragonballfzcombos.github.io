@@ -14,11 +14,15 @@ global.VueApp = new Vue({
     vuetify: new Vuetify({
         theme: {
             dark: true,
+            options: {
+                customProperties: true,
+            },
             themes: {
                 dark: {
-                    primary: "#7c1dff",
-                    accent: "#252531",
-                    secondary: "#fc03ff",
+                    primary: "#444140",
+                    secondary: "#FFA987",
+                    accent: "#F7EBE8",
+                    darker: "#191716",
                     info: "#4a24f5",
                     warning: colors.amber.base,
                     error: colors.deepOrange.accent4,
@@ -26,9 +30,6 @@ global.VueApp = new Vue({
                     purple: "#8e43de",
                 }
             }
-        },
-        options: {
-            customProperties: true,
         }
     })
 }).$mount('#app')

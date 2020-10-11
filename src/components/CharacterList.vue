@@ -43,7 +43,6 @@ export default {
     },
     mounted() {
         this.$store.dispatch("getFullRoster");
-        console.log(this.$vuetify);
     }
 }
 </script>
@@ -51,15 +50,17 @@ export default {
 <style>
 .listHeader {
     font-family: "LeviReBrushed", Helvetica, Arial;
+    color: var(--v-secondary-base);
     font-size: 52px;
-    text-shadow: 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22);
+    text-shadow: 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base);
     width: 100%;
     text-align: center;
 
 }
 .splitHr {
     width: 80%;
-    color: #ccc;
+    margin: 0 auto;
+    border-color: var(--v-secondary-base);
 }
 .character .imgContainer img { 
     height: 150px;
