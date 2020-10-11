@@ -77,20 +77,17 @@ export default {
             this.player.getDuration().then(d => this.duration = (d/60).toFixed(2));
             if (event.data == YT.PlayerState.PLAYING && !this.done) {
                 var self = this;
-                console.log("starting loop");
                 
                 this.checkInterval = setInterval(function() {
                     self.player.getCurrentTime().then(ct => {
                         self.currentTime = ct.toFixed(2);
                 
                         if (self.loopStart && self.loopEnd && self.currentTime > self.loopEndSeconds) {
-                            console.log("here");
                             self.player.seekTo(self.loopStartSeconds, true);
                         }
                     });
                 }, 250)
             } else if (event.data != YT.PlayerState.PLAYING) {
-                console.log("ending loop");
                 clearInterval(this.checkInterval);
             }
         },
@@ -186,6 +183,7 @@ button:focus {
 }
 .timeInfo span {
     margin: 0 10px 0 0;
+    color: var(--v-secondary-base);
 }
 .timeInfo span:last-child {
     margin: 0;
