@@ -7,7 +7,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: () => ({
         roster: [],
-        selectedCharacter: null
+        selectedCharacter: null,
+        characterTabActive: 'Tab1',
+        characterOne: null,
+        characterTwo: null,
+        characterThree: null
     }),
     
     mutations: {
@@ -21,6 +25,10 @@ export default new Vuex.Store({
 
             character.isSelected = true;
             state.selectedCharacter = character;
+        },
+
+        setActiveCharacterTab(state, characterTab) {
+            state.characterTabActive = characterTab;
         }
     },
 
