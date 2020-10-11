@@ -1,18 +1,49 @@
 <template>
-  <div class="container">
-    <!-- <app-header /> -->
-
-    <column-wrapper>
-      <template v-slot:list>
+  <v-app id="inspire">
+    <v-navigation-drawer v-model="drawer" width="40%" app>
         <character-list />
-      </template>
+    </v-navigation-drawer>
 
-      <template v-slot:details>
-        <character-details />
-      </template>
-    </column-wrapper>
-  </div>
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Dragonball FighterZ Combos!</v-toolbar-title>
+    </v-app-bar>
+
+    <v-main>
+      <v-container>
+        <v-row >
+          <v-col cols="12">
+            <character-details />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
+
+<script>
+import CharacterDetails from "./components/CharacterDetails";
+import CharacterList from "./components/CharacterList";
+import { VApp, VMain, VContainer, VRow, VCol, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle } from "vuetify/lib/components";
+
+export default {
+  data: () => ({ drawer: null }),
+  components: {
+    CharacterList,
+    CharacterDetails,
+    VApp, VMain, VContainer, VRow, VCol, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle
+  }
+};
+</script>
+
+<style>
+  @font-face {
+    font-family: "LeviReBrushed";
+    src: local("LeviReBrushed"),
+    url(./fonts/LeviReBrushed.ttf) format("truetype");
+  }
+</style>
 
 <style>
 #app {
@@ -29,28 +60,4 @@
     max-width: 1920px;
   }
 }
-</style>
-
-<script>
-import CharacterDetails from "./components/CharacterDetails";
-import CharacterList from "./components/CharacterList";
-import ColumnWrapper from "./components/ColumnWrapper";
-//import AppHeader from "./components/AppHeader";
-
-export default {
-  components: {
-    //AppHeader,
-    CharacterList,
-    CharacterDetails, 
-    ColumnWrapper
-  }
-};
-</script>
-
-<style>
-  @font-face {
-    font-family: "LeviReBrushed";
-    src: local("LeviReBrushed"),
-    url(./fonts/LeviReBrushed.ttf) format("truetype");
-  }
 </style>
