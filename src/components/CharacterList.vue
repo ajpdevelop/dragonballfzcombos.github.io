@@ -1,39 +1,72 @@
 <template>
-    <div>
-        <h4 class="listHeader">Select your Fighter!</h4>
-        <hr class="splitHr" />
-        <div v-for="character in roster" :key="character.camel" 
-            @click="selectCharacter(character)" 
-            class="character col s2" :class="{selected: character.isSelected}">
-            
-            <div class="imgContainer">
-                <div class="slant-bg" :style="{ 'background-color': character.color }"></div>
-                <img :src="character.image" />
-            </div>
-            
-            <!--<p>{{character.name}}</p>-->
-        </div>
-
-    </div>
+    <v-container class="charList">
+        <v-row>
+            <v-col cols="12">
+                <h4 class="listHeader">Select your Fighter!</h4>
+                <hr class="splitHr" />
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="2" v-for="character in roster" :key="character.camel" 
+                @click="selectCharacter(character)" 
+                class="character" :class="{selected: character.isSelected}">
+                
+                <div class="imgContainer">
+                    <img :src="character.image" />
+                    <div class="slant-bg" :style="{ 'background-color': character.color }"></div>
+                </div>
+                
+                <!--<p>{{character.name}}</p>-->
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
+
+<script>
+import { VContainer, VRow, VCol } from "vuetify/lib/components";
+
+export default {
+    data: () => ({
+        
+    }),
+    components: { VContainer, VRow, VCol },
+
+    computed: {
+        roster() {
+            return this.$store.state.roster;
+        }
+    },
+    methods: {
+        selectCharacter(character) {
+            return this.$store.commit("setSelectedCharacter", character);
+        }
+    },
+    mounted() {
+        this.$store.dispatch("getFullRoster");
+    }
+}
+</script>
 
 <style>
 .listHeader {
     font-family: "LeviReBrushed", Helvetica, Arial;
+    color: var(--v-secondary-base);
     font-size: 52px;
-    text-shadow: 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22), 0 0 1px rgb(247, 158, 22);
+    text-shadow: 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base);
     width: 100%;
     text-align: center;
 
 }
 .splitHr {
     width: 80%;
-    color: #ccc;
+    margin: 0 auto;
+    border-color: var(--v-secondary-base);
 }
 .character .imgContainer img { 
     height: 150px;
     display: block;
     margin: 0 auto;
+    z-index: 1;
 }
 .character {
     position: relative;
@@ -57,8 +90,8 @@
   top: -60%;
   left: -50%;
   height: 590px;
-  z-index: -1;
   transform: rotate(50deg);
+  opacity: .4;
 }
 .character p {
     text-align: center;
@@ -72,27 +105,3 @@
 }
 
 </style>
-
-<script>
-export default {
-    data: () => ({
-        
-    }),
-
-    computed: {
-        roster() {
-            return this.$store.state.roster;
-        }
-    },
-
-    methods: {
-        selectCharacter(character) {
-            return this.$store.commit("setSelectedCharacter", character);
-        }
-    },
-    
-    mounted() {
-        this.$store.dispatch("getFullRoster");
-    }
-}
-</script>
