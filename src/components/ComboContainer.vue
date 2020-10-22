@@ -14,13 +14,23 @@
 import VideoPlayer from './VideoPlayer.vue';
 
 export default {
+  props: {
+    currentTab: Number
+  },
   components: { 
-      VideoPlayer
+    VideoPlayer
   },
   computed: {
-      character() {
-          return this.$store.state.selectedCharacter;
-      }
+    character() {
+      if(this.currentTab === 1){
+          return this.$store.state.characterOne;
+      } else if(this.currentTab === 2) {
+          return this.$store.state.characterTwo;
+      } else if (this.currentTab === 3){
+          return this.$store.state.characterThree;
+      } 
+      return null;
+    }
   }
 }
 </script>
