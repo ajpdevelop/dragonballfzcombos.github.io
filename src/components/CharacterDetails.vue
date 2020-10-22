@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h4 v-text="character.name"></h4>
-        <ComboContainer :character="this.character" />
+        <h4 v-if="this.character !== null" v-text="character.name"></h4>
+        <ComboContainer :current-tab="this.currentTab" :character="this.character" />
     </div>
 </template>
 
@@ -9,9 +9,19 @@
 import ComboContainer from './ComboContainer.vue';
 
 export default {
+    props: {
+        currentTab: Number
+    },
     computed: {
         character() {
-            return this.$store.state.selectedCharacter;
+            if(this.currentTab === 1){
+                return this.$store.state.characterOne;
+            } else if(this.currentTab === 2) {
+                return this.$store.state.characterTwo;
+            } else if (this.currentTab === 3){
+                return this.$store.state.characterThree;
+            } 
+            return null;
         }
     },
     components: { 

@@ -1,9 +1,5 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer class="nav-drawer" v-model="drawer" width="40%" app>
-        <character-list />
-    </v-navigation-drawer>
-
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="navHeader">Dragonball FighterZ Combos!</v-toolbar-title>
@@ -11,42 +7,27 @@
       <div class="flex-grow-1"></div>
 
       <v-toolbar-items>
-        <v-btn v-text="activeTab"></v-btn>
-        <v-btn>About</v-btn>
         <v-btn>Suggestions</v-btn>
-        <v-btn>Contact</v-btn>
       </v-toolbar-items>
     </v-app-bar>
 
+    
+    
     <v-main>
-      <v-container>
-        <v-row>
-          <v-tabs centered v-model="tab" background-color="primary" dark>
-              <v-tab large @click="characterTabActive('characterTab1')">
-                  Character One
-              </v-tab>
-              <v-tab large @click="characterTabActive('characterTab2')">
-                  Character Two
-              </v-tab>
-              <v-tab large @click="characterTabActive('characterTab3')">
-                  Character Three
-              </v-tab>
-          </v-tabs>
-        </v-row>
-        <v-row >
-          <v-col cols="12">
-            <character-details />
-          </v-col>
-        </v-row>
-      </v-container>
+      <v-navigation-drawer class="nav-drawer" v-model="drawer" width="28%" style="top: 64px;" fixed hide-overlay app>
+        <character-list />
+      </v-navigation-drawer>
+
+      <tab-views />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import CharacterDetails from "./components/CharacterDetails";
 import CharacterList from "./components/CharacterList";
-import { VApp, VMain, VContainer, VRow, VCol, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VTabs, VTab } from "vuetify/lib/components";
+import TabViews from "./components/TabViews";
+
+import { VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, } from "vuetify/lib/components";
 
 export default {
   data: () => ({ 
@@ -55,8 +36,8 @@ export default {
   }),
   components: {
     CharacterList,
-    CharacterDetails,
-    VApp, VMain, VContainer, VRow, VCol, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VTabs, VTab
+    TabViews,
+    VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn,
   },
   computed: {
   },
@@ -73,7 +54,13 @@ export default {
     font-family: "LeviReBrushed";
     src: local("LeviReBrushed"),
     url(./fonts/LeviReBrushed.ttf) format("truetype");
-  }
+}
+header {
+	position: fixed !important;
+	top:0 !important;
+	left: 0 !important;
+	z-index: 99999 !important;
+}
 .nav-drawer {
   background-color: var(--v-primary-base)!important;
 }

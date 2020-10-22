@@ -19,7 +19,7 @@ global.VueApp = new Vue({
             },
             themes: {
                 dark: {
-                    primary: "#444140",
+                    primary: "#272727",
                     secondary: "#FFA987",
                     accent: "#F7EBE8",
                     darker: "#191716",
