@@ -38,7 +38,8 @@ import YouTubePlayer from 'youtube-player';
 var YTPlayer;
 export default {
     props: {
-        comboId: String
+        comboId: String,
+        currentTab: Number
     },
     data: function() { return {
         videoId: this.comboId,
@@ -52,7 +53,14 @@ export default {
     }},
     computed: {
         character() {
-            return this.$store.state.selectedCharacter;
+            if(this.currentTab === 1){
+                return this.$store.state.characterOne;
+            } else if(this.currentTab === 2) {
+                return this.$store.state.characterTwo;
+            } else if (this.currentTab === 3){
+                return this.$store.state.characterThree;
+            } 
+            return null;
         },
         playerId() {
             return "player" + this.videoId;

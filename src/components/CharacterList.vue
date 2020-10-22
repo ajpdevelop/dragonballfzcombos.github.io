@@ -5,6 +5,8 @@
                 <h4 class="listHeader">Select your Fighter!</h4>
                 <hr class="splitHr" />
             </v-col>
+            <v-col>
+            </v-col>
         </v-row>
         <v-row>
             <v-col cols="2" v-for="character in roster" :key="character.camel" 
