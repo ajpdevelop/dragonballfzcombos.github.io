@@ -8,7 +8,7 @@ export default new Vuex.Store({
     state: () => ({
         roster: [],
         selectedCharacter: null,
-        characterTabActive: 'Tab1',
+        characterTabActive: 'characterTab1',
         characterOne: null,
         characterTwo: null,
         characterThree: null
@@ -23,6 +23,18 @@ export default new Vuex.Store({
             if (state.selectedCharacter)
                 state.selectedCharacter.isSelected = false;
 
+            if(state.characterTabActive === 'characterTab1') {
+                character.isSelected = true;
+                state.characterOne = character;
+            }
+            else if (state.characterTabActive === 'characterTab2') {
+                character.isSelected = true;
+                state.characterTwo = character;
+            }
+            else if (state.characterTabActive === 'characterTab3') {
+                character.isSelected = true;
+                state.characterThree = character;
+            }
             character.isSelected = true;
             state.selectedCharacter = character;
         },
