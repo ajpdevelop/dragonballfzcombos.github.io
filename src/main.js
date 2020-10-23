@@ -20,9 +20,9 @@ global.VueApp = new Vue({
             themes: {
                 dark: {
                     primary: "#272727",
-                    secondary: "#FFA987",
-                    accent: "#F7EBE8",
-                    darker: "#191716",
+                    secondary: "#FF9900",
+                    accent: "#6699FF",
+                    darker: "#1E1E1E",
                     info: "#4a24f5",
                     warning: colors.amber.base,
                     error: colors.deepOrange.accent4,
