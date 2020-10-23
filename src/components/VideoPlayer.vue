@@ -2,11 +2,6 @@
     <div id="app">
         <div :id="playerId"></div>
         <div class="controls">
-            <div class="buttons">
-                <button @click="playVideo">Play</button>
-                <button @click="stopVideo">Pause</button>
-                <button @click="resumeVideo">Resume</button>
-            </div>
             <div class="inputs">
                 <p>Loop video from</p>
                 <div class="anInput">
@@ -18,6 +13,9 @@
                     <input class="loopInput" v-model="loopEnd" placeholder="End">
                     <span>sec</span>
                 </div>
+            </div>
+            <div class="buttons">
+                <button style="border: 1px solid white;" @click="playVideo">Restart Loop</button>
             </div>
         </div>
 

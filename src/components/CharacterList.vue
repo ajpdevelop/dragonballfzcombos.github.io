@@ -50,19 +50,23 @@ export default {
 </script>
 
 <style>
+.charList {
+    background-color: var(--v-darker-base);
+}
 .listHeader {
     font-family: "LeviReBrushed", Helvetica, Arial;
     color: var(--v-secondary-base);
-    font-size: 52px;
+    font-size: 38px;
     text-shadow: 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base);
     width: 100%;
     text-align: center;
+    margin: 12px 0 12px 0;
 
 }
 .splitHr {
     width: 80%;
     margin: 0 auto;
-    border-color: var(--v-secondary-base);
+    border-color: var(--v-darker-base);
 }
 .character .imgContainer img { 
     height: 150px;
