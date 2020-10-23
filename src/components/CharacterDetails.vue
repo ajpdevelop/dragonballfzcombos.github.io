@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="charDetails">
         <h4 v-if="this.character !== null" v-text="character.name"></h4>
         <ComboContainer :current-tab="this.currentTab" :character="this.character" />
     </div>
@@ -36,5 +36,8 @@ export default {
         font-family: "LeviReBrushed", Helvetica, Arial;
         color: var(--v-secondary-base);
         text-shadow: 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base);
+    }
+    .charDetails {
+        padding: 0 1%;
     }
 </style>
