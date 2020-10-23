@@ -11,7 +11,8 @@ export default new Vuex.Store({
         characterTabActive: 'characterTab1',
         characterOne: null,
         characterTwo: null,
-        characterThree: null
+        characterThree: null,
+        howToExpanded: false
     }),
     
     mutations: {
@@ -38,9 +39,11 @@ export default new Vuex.Store({
             character.isSelected = true;
             state.selectedCharacter = character;
         },
-
         setActiveCharacterTab(state, characterTab) {
             state.characterTabActive = characterTab;
+        },
+        ToggleHowTo(state) {
+            state.howToExpanded = !state.howToExpanded
         }
     },
 
