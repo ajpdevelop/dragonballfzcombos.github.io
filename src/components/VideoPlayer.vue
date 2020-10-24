@@ -1,31 +1,33 @@
 <template>
     <div id="app">
-        <div :id="playerId"></div>
-        <div class="controls">
-            <div class="inputs">
-                <p>Loop video from</p>
-                <div class="anInput">
-                    <input class="loopInput" v-model="loopStart" placeholder="Start">
-                    <span>sec</span>
-                </div>
-                <p>to</p>
-                <div class="anInput">
-                    <input class="loopInput" v-model="loopEnd" placeholder="End">
-                    <span>sec</span>
-                </div>
-            </div>
-            <div class="buttons">
-                <button style="border: 1px solid white;" @click="playVideo">Restart Loop</button>
-            </div>
+        <div class="ytcontainer" :style="{
+            'width': this.$store.state.curVideoSize.width + 'px',
+            'height': this.$store.state.curVideoSize.height + 'px'
+        }">
+            <div :id="playerId" width="320" height="240" ></div>
         </div>
-
-        
-
-        <div class="timeInfo">
-            <!-- Video: <span v-text="videoId"></span><br /> -->
-            Duration: <span v-text="duration + ' min'"></span>
-            Current Time: <span v-text="currentTime + ' s'"></span>
-            Loop Seconds: <span v-text="loopStartSeconds + ' s - ' + loopEndSeconds + ' s'"></span>
+        <div class="controls" :style="{ 'font-size': fontSize + 'px'}" >
+            <div class="topHalf">
+                <p class="loop">Loop Video</p>
+                <div class="timeInfo">
+                    Current Time: 
+                </div>
+            </div>
+                
+            <div class="bottomHalf">
+                <div class="anInput">
+                    <input class="loopInput" v-model="loopStart" placeholder="0:00">
+                    <span>min:sec</span>
+                </div>
+                <p class="seperatorTo">to</p>
+                <div class="anInput">
+                    <input class="loopInput" v-model="loopEnd" placeholder="0:00">
+                    <span>min:sec</span>
+                </div>
+                <button class="resetLoop" @click="playVideo">Restart Loop</button>
+                <span class="currentTime" v-text="currentTime + ' s'"></span>
+            </div>
+            
         </div>
     </div>
 </template>
@@ -37,7 +39,8 @@ var YTPlayer;
 export default {
     props: {
         comboId: String,
-        currentTab: Number
+        currentTab: Number,
+        fontSize: Number
     },
     data: function() { return {
         videoId: this.comboId,
@@ -112,7 +115,7 @@ export default {
         }
     },
     mounted() {
-        this.player = YouTubePlayer(this.playerId);
+        this.player = YouTubePlayer(this.playerId, {width: '100%', height: '100%'});
         this.player.cueVideoById(this.videoId);
         this.player.on("ready", ev => this.onPlayerReady(ev));
         this.player.on("stateChange", ev => this.onPlayerStateChange(ev));
@@ -125,20 +128,8 @@ export default {
 #app {
     margin: 0;
 }
-.controls {
-    height: 36px;
-    margin: 8px 0 8px 0
-}
-.buttons, .inputs {
-    display: inline-block;
-    height: 100%;
-}
-.buttons button {
-    height: 100%;
-    margin-right: 20px;
-    font-size: 24px;
-    padding: 0px 12px 0px 12px;
-    border-radius: 10px;
+.ytcontainer {
+    margin: 0 auto;
 }
 button:focus {
     background-color: var(--v-accent-base);
@@ -147,51 +138,67 @@ button:focus {
     box-shadow: none;
     border: 0;
 }
-.inputs {
-    vertical-align: top;
+.timeInfo span {
+    color: var(--v-cpurple-base);
 }
-.inputs p {
-    padding: 0;
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-    display: inline-block;
+
+.controls {
+    text-align: left;
 }
-.anInput {
-    display: inline-block;
-    margin: 0 8px;
-    height: 100%;
-    border: 1px solid;
+input {
+    color: var(--v-cpurple-base);
 }
-.anInput span{
-    display:inline-block;
-    height:  100%;
-    font-size: 16px;
-    height: 100%;
-    padding: 0 8px 0 0;
-    text-align: center;
-}
-.inputs input {
-    width: 70px;
-    font-size: 24px;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    border: 0;
-    color: var(--v-secondary-base);
+input:focus {
+    border-bottom: 1px solid white!important;
+    box-shadow: none!important;
 }
 ::placeholder {
   opacity: 1;
+  color: var(--v-cyellow-base);
+}
+.topHalf {
+    overflow: hidden;
+    height: 36px;
+}
+.bottomHalf {
+    overflow: hidden;
+}
+.loop {
+    padding: 6px 0 4px 12px;
+    width: 30%;
+    float: left;
 }
 .timeInfo {
-    font-size: 18px;
+    padding: 6px 36px 0 0;
+    width: 69%;
+    float: right;
+    text-align: right;
 }
-.timeInfo span {
-    margin: 0 10px 0 0;
-    color: var(--v-secondary-base);
+.anInput {
+    width: 86px;
+    margin: 0 14px 6px 12px;
+    float: left;
+    text-align: center;
 }
-.timeInfo span:last-child {
+.anInput input {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: 1px solid white;
+    height: 32px;
     margin: 0;
+}
+.seperatorTo {
+    float: left;
+}
+.currentTime {
+    float:right;
+    padding: 0 100px 4px 0;
+}
+.resetLoop {
+    border: 1px solid white;
+    padding: 3px 8px 2px 8px;
+    margin-left: 8px;
+    border-radius: 8px;
 }
 </style>

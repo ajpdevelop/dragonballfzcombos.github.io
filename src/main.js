@@ -23,11 +23,14 @@ global.VueApp = new Vue({
                     secondary: "#FF9900",
                     accent: "#6699FF",
                     darker: "#1E1E1E",
+                    test: "#a57eca",
+                    test2: "#e8e096",
                     info: "#4a24f5",
                     warning: colors.amber.base,
                     error: colors.deepOrange.accent4,
                     success: colors.green.accent3,
-                    purple: "#8e43de",
+                    cpurple: "#a57eca",
+                    cyellow: "#e8e096"
                 }
             }
         }
