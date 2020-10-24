@@ -1,7 +1,14 @@
 <template>
   <v-app id="inspire">
     <v-app-bar dense app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon class="navcon" @click="drawer = !drawer">
+        <v-icon v-if="!drawer" large color="white" >
+          mdi-account-arrow-right
+        </v-icon>
+        <v-icon v-if="drawer" large color="white" >
+          mdi-account-arrow-left
+        </v-icon>
+      </v-app-bar-nav-icon>
       <v-toolbar-title class="navHeader">Dragonball FighterZ Combos!</v-toolbar-title>
       
       <div class="flex-grow-1"></div>
@@ -31,7 +38,7 @@ import CharacterList from "./components/CharacterList";
 import TabViews from "./components/TabViews";
 import HelpBar from "./components/HelpBar";
 
-import { VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, } from "vuetify/lib/components";
+import { VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VIcon } from "vuetify/lib/components";
 
 export default {
   data: () => ({ 
@@ -42,7 +49,7 @@ export default {
     CharacterList,
     TabViews,
     HelpBar,
-    VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn,
+    VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VIcon
   },
   computed: {
   },
@@ -72,7 +79,15 @@ header {
 .nav-drawer {
   background-color: var(--v-primary-base)!important;
 }
-.v-main {
+.navcon {
+  background-color: var(--v-primary-base);
+  color: white;
+  border-radius: 0;
+}
+.navcon:focus {
+  background-color: var(--v-primary-base);
+}
+.navcon:focus {
   background-color: var(--v-primary-base);
 }
 #app {
@@ -83,11 +98,12 @@ header {
   margin-top: 60px;
 }
 .v-app-bar {
-  background-color: var(--v-secondary-base)!important;
+  background-color: var(--v-test-base)!important;
 }
 .navHeader {
-  color: var(--v-darker-base);
+  color: var(--v-primary-lighten1);
   font-family: "LeviReBrushed", Helvetica, Arial;
+  text-shadow: 0 0 2px var(--v-test2-base), 0 0 2px var(--v-test2-base), 0 0 2px var(--v-test2-base), 0 0 2px var(--v-test2-base);
   font-size: 220%;
   margin-top: 3px;
 }

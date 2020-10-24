@@ -16,6 +16,13 @@
             </v-tab>
         </v-tabs>
 
+        <v-card flat class="videoSizes">
+            <span>Resize Videos: </span>
+            <v-icon @click="newSize(1)">mdi-image-size-select-small</v-icon>
+            <v-icon @click="newSize(2)">mdi-image-size-select-large</v-icon>
+            <v-icon @click="newSize(3)">mdi-image-size-select-actual</v-icon>
+        </v-card>
+
         <v-tabs-items v-model="tab">
             <v-tab-item v-for="i in 3" :key="i" :value="'tab-' + i">
                 <CharacterDetails :current-tab="i" />
@@ -30,7 +37,7 @@
     import CharacterDetails from "./CharacterDetails";
     import ContentPlaceholder from "./ContentPlaceholder";
 
-    import { VTabs, VTab, VTabsItems, VTabItem, VCard } from "vuetify/lib/components";
+    import { VTabs, VTab, VTabsItems, VTabItem, VCard, VIcon } from "vuetify/lib/components";
 
     export default {
         data: () => ({ 
@@ -39,13 +46,16 @@
         components: {
             CharacterDetails,
             ContentPlaceholder,
-            VTabs, VTab, VTabsItems, VTabItem, VCard
+            VTabs, VTab, VTabsItems, VTabItem, VCard, VIcon
         },
         computed: {
         },
         methods: {
             characterTabActive(characterTab) {
                 return this.$store.commit("setActiveCharacterTab", characterTab);
+            },
+            newSize(whichSize) {
+                return this.$store.commit("ChangeVideoSize", whichSize)
             }
         }
     };
@@ -54,5 +64,19 @@
 <style>
     .v-tab {
         font-size: 16px;
+    }
+    .videoSizes {
+        margin: 8px 16px 0 0;
+        font-size: 18px;
+        width: 240px;
+        right: 0;
+        height: 36px;
+        text-align: right;
+        position: absolute;
+        background-color: none;
+        z-index: 10;
+    }
+    .videoSizes i {
+        padding: 0 6px;
     }
 </style>
