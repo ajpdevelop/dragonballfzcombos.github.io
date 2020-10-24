@@ -55,9 +55,9 @@ export default {
 }
 .listHeader {
     font-family: "LeviReBrushed", Helvetica, Arial;
-    color: var(--v-secondary-base);
+    color: white;
     font-size: 38px;
-    text-shadow: 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base), 0 0 2px var(--v-darker-base);
+    text-shadow: 0 0 4px var(--v-cpurple-base), 0 0 4px var(--v-cpurple-base), 0 0 4px var(--v-cpurple-base), 0 0 4px var(--v-cpurple-base);
     width: 100%;
     text-align: center;
     margin: 12px 0 12px 0;
@@ -66,7 +66,7 @@ export default {
 .splitHr {
     width: 80%;
     margin: 0 auto;
-    border-color: var(--v-darker-base);
+    border-color: var(--v-cyellow-base);
 }
 .character .imgContainer img { 
     height: 150px;
