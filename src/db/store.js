@@ -12,7 +12,23 @@ export default new Vuex.Store({
         characterOne: null,
         characterTwo: null,
         characterThree: null,
-        howToExpanded: false
+        howToExpanded: false,
+        curVideoSize: {
+            width: 640,
+            height: 360
+        },
+        videoSizeOne: {
+            width: 256,
+            height: 144
+        },
+        videoSizeTwo: {
+            width: 426,
+            height: 240
+        },
+        videoSizeThree: {
+            width: 640,
+            height: 360
+        }
     }),
     
     mutations: {
@@ -44,6 +60,16 @@ export default new Vuex.Store({
         },
         ToggleHowTo(state) {
             state.howToExpanded = !state.howToExpanded
+        },
+        ChangeVideoSize(state, newSize) {
+            if(newSize === 1) {
+                state.curVideoSize = state.videoSizeOne
+            } else if (newSize === 2) {
+                state.curVideoSize = state.videoSizeTwo
+            } else if (newSize === 3) {
+                state.curVideoSize = state.videoSizeThree
+            } else
+            console.log('Size Error, newSize not equal to 1-3. newSize=' + newSize)
         }
     },
 
