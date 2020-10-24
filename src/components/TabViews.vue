@@ -18,9 +18,9 @@
 
         <v-card flat class="videoSizes">
             <span>Resize Videos: </span>
-            <v-icon @click="newSize(1)">mdi-image-size-select-small</v-icon>
-            <v-icon @click="newSize(2)">mdi-image-size-select-large</v-icon>
-            <v-icon @click="newSize(3)">mdi-image-size-select-actual</v-icon>
+            <v-icon class="sizer" @click="newSize(1)">mdi-image-size-select-small</v-icon>
+            <v-icon class="sizer" @click="newSize(2)">mdi-image-size-select-large</v-icon>
+            <v-icon class="sizer" @click="newSize(3)">mdi-image-size-select-actual</v-icon>
         </v-card>
 
         <v-tabs-items v-model="tab">
@@ -67,8 +67,8 @@
     }
     .videoSizes {
         margin: 8px 16px 0 0;
-        font-size: 18px;
-        width: 240px;
+        font-size: 20px;
+        width: 500px;
         right: 0;
         height: 36px;
         text-align: right;
@@ -76,7 +76,28 @@
         background-color: none;
         z-index: 10;
     }
-    .videoSizes i {
-        padding: 0 6px;
+    .videoSizes .sizer {
+        padding: 0 10px;
+    }
+    .videoSizes button:focus {
+        background-color:inherit!important;
+    }
+    .v-icon.v-icon::after {
+        background-color: inherit;
+        border-radius: inherit;
+        content: inherit;
+        display: inherit;
+        height: inherit;
+        left: inherit;
+        opacity: inherit;
+        pointer-events: inherit;
+        position: inherit;
+        top: inherit;
+        transform: none;
+        width: inherit;
+        transition: none;
+        }
+    .sizer {
+        padding-right:8px;
     }
 </style>
