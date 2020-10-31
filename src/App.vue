@@ -9,13 +9,17 @@
           mdi-account-arrow-left
         </v-icon>
       </v-app-bar-nav-icon>
-      <v-toolbar-title class="navHeader">Dragonball FighterZ Combos!</v-toolbar-title>
+      <v-toolbar-title v-if="small" class="navHeader">DBFZC</v-toolbar-title>
+      <v-toolbar-title v-if="mobile" class="navHeader">DBFZ COMBOS!</v-toolbar-title>
+      <v-toolbar-title v-if="!mobile && !small" class="navHeader">DRAGONBALL FIGHTERZ COMBOS!</v-toolbar-title>
       
       <div class="flex-grow-1"></div>
 
       <v-toolbar-items>
         <v-btn @click="ToggleHowTo" >How to</v-btn>
-        <v-btn>Suggestions</v-btn>
+        <v-btn @click.stop="showSuggestForm=true" >Suggestions</v-btn>
+          <Suggestions :visible="showSuggestForm" @close="showSuggestForm=false" />
+
       </v-toolbar-items>
     </v-app-bar>
 
@@ -37,21 +41,30 @@
 import CharacterList from "./components/CharacterList";
 import TabViews from "./components/TabViews";
 import HelpBar from "./components/HelpBar";
+import Suggestions from "./components/Suggestions";
 
 import { VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VIcon } from "vuetify/lib/components";
 
 export default {
   data: () => ({ 
     drawer: null,
-    activeTab: null
+    activeTab: null,
+    showSuggestForm: false,
   }),
   components: {
+    Suggestions,
     CharacterList,
     TabViews,
     HelpBar,
-    VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VIcon
+    VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VIcon,
   },
   computed: {
+    mobile() {
+      return this.$vuetify.breakpoint.sm
+    },
+    small() {
+      return this.$vuetify.breakpoint.xs
+    },
   },
   methods: {
     characterTabActive(characterTab) {
@@ -64,20 +77,83 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @font-face {
     font-family: "LeviReBrushed";
     src: local("LeviReBrushed"),
     url(./fonts/LeviReBrushed.ttf) format("truetype");
 }
-header {
+.v-main__wrap {
+  background-color: #1e1e1e;
+}
+.v-app-bar {
+  background-color: var(--v-test-base)!important;
 	position: fixed !important;
 	top:0 !important;
 	left: 0 !important;
 	z-index: 99999 !important;
+  /*border-bottom: 1px solid var(--v-cpurple-lighten1)!important;*/
+}/*
+.v-toolbar__items {
+  button {
+    border-bottom: 1px solid var(--v-cpurple-lighten1)!important;
+  }
 }
+.v-app-bar__nav-icon {
+  border-bottom: 1px solid var(--v-cpurple-lighten1)!important;
+} */
 .nav-drawer {
   background-color: var(--v-primary-base)!important;
+  height: calc(100vh - 48px)!important;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+    /* Track */
+.nav-drawer {
+      ::-webkit-scrollbar {
+      width: 16px;
+      border: 5px solid white;
+
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #b0b0b0;
+      background-clip: padding-box;
+      border: 0.05em solid #eeeeee;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #494949;
+    }
+    /* Buttons */
+    ::-webkit-scrollbar-button:single-button {
+      background-color: #555555;
+      display: block;
+      border-style: solid;
+      height: 13px;
+      width: 16px;
+    }
+    /* Up */
+    ::-webkit-scrollbar-button:single-button:vertical:decrement {
+      border-width: 0 8px 8px 8px;
+      border-color: transparent transparent #bbbbbb transparent;
+    }
+
+    ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+      border-color: transparent transparent #cccccc transparent;
+    }
+    /* Down */
+    ::-webkit-scrollbar-button:single-button:vertical:increment {
+      border-width: 8px 8px 0 8px;
+      border-color: #bbbbbb transparent transparent transparent;
+    }
+
+    ::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+      border-color: #cccccc transparent transparent transparent;
+    }
 }
 .navcon {
   background-color: var(--v-primary-base);
@@ -97,14 +173,16 @@ header {
   text-align: center;
   margin-top: 60px;
 }
-.v-app-bar {
-  background-color: var(--v-test-base)!important;
-}
 .navHeader {
-  color: var(--v-primary-lighten1);
+  color: black;
   font-family: "LeviReBrushed", Helvetica, Arial;
-  text-shadow: 0 0 2px var(--v-test2-base), 0 0 2px var(--v-test2-base), 0 0 2px var(--v-test2-base), 0 0 2px var(--v-test2-base);
-  font-size: 220%;
-  margin-top: 3px;
+  font-size: 250%;
+  margin-top: 12px;
+}
+@media only screen and (max-width: 768px) {
+  .nav-drawer {
+    width: 100%!important;
+    z-index: 999;
+  }
 }
 </style>
