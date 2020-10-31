@@ -16,6 +16,7 @@
             </v-tab>
         </v-tabs>
 
+        <!-- Test changing size of active while putting a bright white color on active icon & lower white of inactive icons VERY slightly. -->
         <v-card flat class="videoSizes">
             <span>Resize Videos: </span>
             <v-icon class="sizer" @click="newSize(1)">mdi-image-size-select-small</v-icon>
@@ -68,7 +69,7 @@
     .videoSizes {
         margin: 8px 16px 0 0;
         font-size: 20px;
-        width: 500px;
+        width: 270px;
         right: 0;
         height: 36px;
         text-align: right;

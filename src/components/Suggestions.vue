@@ -1,0 +1,101 @@
+<template>
+    <v-dialog v-model="show" content-class="v-dialog--custom">
+        <v-card outlined>
+            <v-container>
+                <v-row>
+                    <v-col cols="12">
+                        <v-card-title>
+                        Suggestions / Contact Me
+                        </v-card-title>
+
+                        <v-card-text>
+                            If you would like to include your videos or provide any suggestions, questions, concerns or inquiries! Valid E-mail address required.
+                        </v-card-text>
+
+                        <v-divider></v-divider>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col cols="12">
+                    <v-form>
+                        <v-row>
+                            <v-col cols="12" md="5">
+                                <v-text-field filled outlined color="white" v-model="email" :rules="emailRules" label="E-mail" :success="!!email" ></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="7">
+                                <v-text-field filled outlined color="white" v-model="subject" label="Subject" ></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="12">
+                                <v-textarea auto-grow rows="5" filled outlined color="white" v-model="message" label="Message" ></v-textarea>
+                            </v-col>
+                        </v-row>
+                        <v-row style="margin-bottom: 0;">
+                            <v-col cols="12">
+                                <v-card-actions>
+                                    <v-btn flat @click.stop="show=false">Close</v-btn>
+                                </v-card-actions>
+                            </v-col>
+                        </v-row>
+                    </v-form>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-card>
+    </v-dialog>
+</template>
+
+<script>
+import { VDialog, VContainer, VRow, VCol, VForm, VTextField, VTextarea, VCard, VCardTitle, VCardText, VBtn } from "vuetify/lib/components";
+
+export default {
+    data: () => ({
+        valid: false,
+        subject: '',
+        email: '',
+        emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(v) || 'E-mail must be valid',
+        ],
+    }),
+    components: {
+        VDialog, VContainer, VRow, VCol, VForm, VTextField, VTextarea, VCard, VCardTitle, VCardText, VBtn,
+    },
+    props: ['visible'],
+    computed: {
+        show: {
+        get () {
+            return this.visible
+        },
+        set (value) {
+            if (!value) {
+            this.$emit('close')
+            }
+        }
+        }
+    }
+}
+</script>
+
+<style lang="scss">
+    .v-text-field {
+        input {
+            border: none!important;
+            &:focus {
+                border: none!important;
+                box-shadow: none!important;
+            }
+        }
+    }
+    .v-dialog--custom {
+        max-width: 768px;
+        overflow-y: initial;
+    }
+    .v-sheet--outlined {
+        border: 2px solid var(--v-cpurple-base)!important;
+    }
+    .v-card__title {
+        font-size: 180%;
+    }
+</style>

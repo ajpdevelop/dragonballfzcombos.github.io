@@ -19,6 +19,7 @@
                     <input class="loopInput" v-model="loopStart" placeholder="0:00">
                     <span>min:sec</span>
                 </div>
+                <!-- REDUCE FONT SIZE of min:sec because it's secondary information as to not compete with input-->
                 <p class="seperatorTo">to</p>
                 <div class="anInput">
                     <input class="loopInput" v-model="loopEnd" placeholder="0:00">
