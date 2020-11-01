@@ -16,7 +16,6 @@
       <div class="flex-grow-1"></div>
 
       <v-toolbar-items>
-        <v-btn>TEST</v-btn>
         <v-btn @click="ToggleHowTo" >How to</v-btn>
         <v-btn @click.stop="showSuggestForm=true" >Suggestions</v-btn>
           <Suggestions :visible="showSuggestForm" @close="showSuggestForm=false" />
