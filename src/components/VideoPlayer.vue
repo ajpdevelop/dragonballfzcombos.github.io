@@ -5,7 +5,6 @@
         { 'width': this.$store.state.curVideoSize.width + 'px', 'height': this.$store.state.curVideoSize.height + 'px' } :
         { 'width': '100%', 'height': this.vidHeight + 'px' }
         ]">
-        <!--  MOVE ABOVE SHIT DOWN INTO ACTUAL YT VID...  -->
             <div :id="playerId" ></div>
         </div>
         <div class="controls" :style="{ 'font-size': fontSize + 'px'}" >
@@ -29,7 +28,6 @@
                             <input class="loopInput" v-model="loopStart" placeholder="0:00">
                             <span>min:sec</span>
                         </div>
-                        <!-- REDUCE FONT SIZE of min:sec because it's secondary information as to not compete with input-->
                         <p class="seperatorTo">to</p>
                         <div class="anInput" style="margin-right: 0;">
                             <input class="loopInput" v-model="loopEnd" placeholder="0:00">
