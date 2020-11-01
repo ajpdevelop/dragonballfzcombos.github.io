@@ -1,8 +1,8 @@
 <template>
   <v-layout class="conWrapper" row wrap>
-    <v-card elavation-0 class="comboContainer" v-for="combo in character.combos" :key="combo.video" :style="{
-            'width': curWidth+ 'px'
-        }">
+    <v-card elavation-0 class="comboContainer" v-for="combo in character.combos" :key="combo.video" :style="
+        [ !mobile ? { 'width': curWidth + 'px' } : { 'width': '100%' } ]
+      ">
       <div class="aCombo">
         <h3 v-text="combo.name" :style="{ 'font-size': h3size + 'px'} "></h3>
         <p class="author" :style="{ 'font-size': h3size + 'px'} ">YouTube Channel: <a target="_blank" rel="noopener noreferrer" v-text="combo.author" :href="combo.authorUrl"></a></p>
@@ -42,7 +42,10 @@ export default {
     },
     getSize() {
       return this.containerSize();
-    }
+    },
+    mobile() {
+        return this.$vuetify.breakpoint.sm
+    },
   },
   methods: {
     containerSize() {
