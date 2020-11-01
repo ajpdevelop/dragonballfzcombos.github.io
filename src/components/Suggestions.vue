@@ -34,7 +34,7 @@
                         <v-row style="margin-bottom: 0;">
                             <v-col cols="12">
                                 <v-card-actions>
-                                    <v-btn flat @click.stop="show=false">Close</v-btn>
+                                    <v-btn text @click.stop="show=false">Close</v-btn>
                                 </v-card-actions>
                             </v-col>
                         </v-row>

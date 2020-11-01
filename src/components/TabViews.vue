@@ -17,7 +17,7 @@
         </v-tabs>
 
         <!-- Test changing size of active while putting a bright white color on active icon & lower white of inactive icons VERY slightly. -->
-        <v-card flat class="videoSizes">
+        <v-card flat class="videoSizes" v-if="!small && !xsmall">
             <span>Resize Videos: </span>
             <v-icon class="sizer" @click="newSize(1)">mdi-image-size-select-small</v-icon>
             <v-icon class="sizer" @click="newSize(2)">mdi-image-size-select-large</v-icon>
@@ -50,6 +50,12 @@
             VTabs, VTab, VTabsItems, VTabItem, VCard, VIcon
         },
         computed: {
+            small() {
+                return this.$vuetify.breakpoint.sm
+            },
+            xsmall() {
+                return this.$vuetify.breakpoint.xs
+            }
         },
         methods: {
             characterTabActive(characterTab) {
