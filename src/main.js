@@ -4,6 +4,13 @@ import App from './App.vue';
 import Vuetify from 'vuetify/lib';
 import colors from 'vuetify/lib/util/colors';
 
+import * as firebase from 'firebase/app';
+import 'firebase/analytics';
+const analytics = firebase.analytics;
+
+analytics().setCurrentScreen(window.location.pathname) // sets `screen_name` parameter
+analytics().logEvent('screen_view') // log event with `screen_name` parameter attached
+
 Vue.config.productionTip = false
 
 Vue.use(Vuetify);
