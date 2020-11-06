@@ -34,7 +34,7 @@
                         <v-row style="margin-bottom: 0;">
                             <v-col cols="12">
                                 <v-card-actions>
-                                    <v-btn id="submitBtn" text @click="SubmitForm">Close</v-btn>
+                                    <v-btn id="submitBtn" text @click="SubmitForm">Submit</v-btn>
                                 </v-card-actions>
                             </v-col>
                         </v-row>
@@ -115,5 +115,9 @@ export default {
     }
     .v-card__title {
         font-size: 180%;
+    }
+    .submitBtn {
+        background-color: var(--v-cpurple-base);
+        color: var(--v-darker-base);
     }
 </style>
