@@ -40,6 +40,9 @@ export default {
     },
     methods: {
         selectCharacter(character) {
+            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                this.$store.state.drawerState = !this.$store.state.drawerState
+            }
             return this.$store.commit("setSelectedCharacter", character);
         }
     },
