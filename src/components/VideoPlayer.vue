@@ -11,7 +11,7 @@
             <div class="topHalf">
                 <v-row>
                     <v-col cols="8">
-                        <p class="loop">Loop Video</p>
+                        <p class="loop">Loop Video (exclude : for seconds only)</p>
                     </v-col>
                     <v-col cols="4">
                         <div class="timeInfo">
@@ -70,7 +70,9 @@ export default {
         checkInterval: null,
         player: null,
         done: false,
-        vidHeight: null
+        vidHeight: null,
+        startError: '',
+        endError: ''
     }},
     computed: {
         character() {
@@ -87,26 +89,48 @@ export default {
             return "player" + this.videoId;
         },
         loopStartSeconds() {
-            let lSta = this.loopStart.split(':');
-            console.log('Start Split    ' + lSta);
-            let staTotal = (parseFloat(lSta[0]) >= 1 ? (parseFloat(lSta[0]) * 60) : 0) + parseFloat(lSta[1]);
+            let initialTime = this.loopStart.split(':');
+            let startTime;
 
-            console.log('Start Total    ' + staTotal)
-
-            if(this.loopStart !== null) {
-                return staTotal;  
-            } else { null }
+            if(isNaN(parseFloat(initialTime[0]))) {
+                console.log(this.startError);
+                this.stopVideo();
+            } else {
+                if(this.loopStart.includes(':')) {
+                    if(isNaN(parseFloat(initialTime[1]))) {
+                        initialTime[1] = 0;
+                    }
+                    startTime = (parseFloat(initialTime[0]) >= 1 ? (parseFloat(initialTime[0]) * 60) : 0) + parseFloat(initialTime[1]);
+                } else {
+                    startTime = parseFloat(initialTime);
+                }
+                this.resumeVideo();
+                if(this.loopStart !== null) {
+                    return startTime;  
+                } else { null }
+            }
         },
         loopEndSeconds() {
-            let lSta = this.loopEnd.split(':');
-            console.log('End Split    ' + lSta);
-            let staTotal = (parseFloat(lSta[0]) >= 1 ? (parseFloat(lSta[0]) * 60) : 0) + parseFloat(lSta[1]);
+            let initialTime = this.loopEnd.split(':');
+            let endTime;
 
-            console.log('End Total    ' + staTotal)
-
-            if(this.loopStart !== null) {
-                return staTotal;  
-            } else { null }
+            if(isNaN(parseFloat(initialTime[0]))) {
+                console.log(this.endError);
+                this.stopVideo();
+            } else {
+                if(this.loopEnd.includes(':')) {
+                    if(isNaN(parseFloat(initialTime[1]))) {
+                        initialTime[1] = 0;
+                    }
+                    endTime = (parseFloat(initialTime[0]) >= 1 ? (parseFloat(initialTime[0]) * 60) : 0) + parseFloat(initialTime[1]);
+                } else {
+                    endTime = parseFloat(initialTime);
+                }
+                this.resumeVideo();
+                if(this.loopEnd !== null) {
+                    return endTime;  
+                } else { null }
+            }
         },
         small() {
             return this.$vuetify.breakpoint.sm

@@ -1,11 +1,11 @@
 <template>
   <v-app id="inspire">
     <v-app-bar dense app>
-      <v-app-bar-nav-icon class="navcon" @click="drawer = !drawer">
-        <v-icon v-if="!drawer" large color="white" >
+      <v-app-bar-nav-icon class="navcon" @click="drawerState = !drawerState">
+        <v-icon v-if="!this.$store.state.drawerState" large color="white" >
           mdi-account-arrow-right
         </v-icon>
-        <v-icon v-if="drawer" large color="white" >
+        <v-icon v-if="this.$store.state.drawerState" large color="white" >
           mdi-account-arrow-left
         </v-icon>
       </v-app-bar-nav-icon>
@@ -26,7 +26,7 @@
     
     
     <v-main>
-      <v-navigation-drawer class="nav-drawer" v-model="drawer" width="28%" style="top: 48px;" fixed hide-overlay app>
+      <v-navigation-drawer class="nav-drawer" v-model="drawerState" width="28%" style="top: 48px;" fixed hide-overlay app>
         <character-list />
       </v-navigation-drawer>
 
@@ -46,8 +46,7 @@ import Suggestions from "./components/Suggestions";
 import { VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VIcon } from "vuetify/lib/components";
 
 export default {
-  data: () => ({ 
-    drawer: null,
+  data: () => ({
     activeTab: null,
     showSuggestForm: false,
   }),
@@ -65,6 +64,10 @@ export default {
     small() {
       return this.$vuetify.breakpoint.xs
     },
+    drawerState: {
+      get () { return this.$store.getters.drawerState },
+      set (v) { return this.$store.commit('toggleDrawerState', v) }
+    }
   },
   methods: {
     characterTabActive(characterTab) {
