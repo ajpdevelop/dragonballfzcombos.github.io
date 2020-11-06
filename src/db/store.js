@@ -13,6 +13,7 @@ export default new Vuex.Store({
         characterTwo: null,
         characterThree: null,
         howToExpanded: false,
+        drawerState: false,
         curVideoSize: {
             width: 640,
             height: 360
@@ -30,7 +31,6 @@ export default new Vuex.Store({
             height: 360
         }
     }),
-    
     mutations: {
         setRoster(state, roster) {
             state.roster = roster;
@@ -58,6 +58,9 @@ export default new Vuex.Store({
         setActiveCharacterTab(state, characterTab) {
             state.characterTabActive = characterTab;
         },
+        toggleDrawerState (state, data) {
+            state.drawerState = data
+        },
         ToggleHowTo(state) {
             state.howToExpanded = !state.howToExpanded
         },
@@ -72,7 +75,9 @@ export default new Vuex.Store({
             console.log('Size Error, newSize not equal to 1-3. newSize=' + newSize)
         }
     },
-
+    getters : {
+        drawerState: (state) => state.drawerState
+    },
     actions: {
         getFullRoster(context) {
             if (context.state.roster.length)
