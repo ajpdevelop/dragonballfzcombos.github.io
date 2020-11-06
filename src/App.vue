@@ -42,7 +42,6 @@ import CharacterList from "./components/CharacterList";
 import TabViews from "./components/TabViews";
 import HelpBar from "./components/HelpBar";
 import Suggestions from "./components/Suggestions";
-
 import { VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VIcon } from "vuetify/lib/components";
 
 export default {
