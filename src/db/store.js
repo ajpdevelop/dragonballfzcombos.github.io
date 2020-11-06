@@ -13,7 +13,7 @@ export default new Vuex.Store({
         characterTwo: null,
         characterThree: null,
         howToExpanded: false,
-        drawerState: false,
+        drawerState: true,
         curVideoSize: {
             width: 640,
             height: 360
