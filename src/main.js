@@ -3,6 +3,7 @@ import store from "./db/store";
 import App from './App.vue';
 import Vuetify from 'vuetify/lib';
 import colors from 'vuetify/lib/util/colors';
+const db = require('./db/db');
 
 Vue.config.productionTip = false
 
@@ -11,6 +12,7 @@ Vue.use(Vuetify);
 global.VueApp = new Vue({
     render: h => h(App),
     store,
+    db,
     vuetify: new Vuetify({
         theme: {
             dark: true,
