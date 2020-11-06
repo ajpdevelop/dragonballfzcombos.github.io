@@ -8,8 +8,8 @@ import * as firebase from 'firebase/app';
 import 'firebase/analytics';
 const analytics = firebase.analytics;
 
-analytics().setCurrentScreen(window.location.pathname) // sets `screen_name` parameter
-analytics().logEvent('screen_view') // log event with `screen_name` parameter attached
+analytics().setCurrentScreen(window.location.pathname); // sets `screen_name` parameter
+analytics().logEvent('screen_view'); // log event with `screen_name` parameter attached
 
 Vue.config.productionTip = false
 
