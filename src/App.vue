@@ -18,7 +18,7 @@
       <v-toolbar-items>
         <v-btn @click="ToggleHowTo" >How to</v-btn>
         <v-btn @click.stop="showSuggestForm=true" >Suggestions</v-btn>
-          <Suggestions :visible="showSuggestForm" @close="showSuggestForm=false" />
+          <Suggestions :visible="showSuggestForm" @close="showSuggestForm=false" @submitted="OnFormSubmit"/>
 
       </v-toolbar-items>
     </v-app-bar>
@@ -75,6 +75,9 @@ export default {
     },
     ToggleHowTo() {
         this.$store.commit('ToggleHowTo')
+    },
+    OnFormSubmit() {
+      this.showSuggestForm = false;
     }
   }
 };

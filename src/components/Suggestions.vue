@@ -17,24 +17,24 @@
                 </v-row>
                 <v-row>
                     <v-col cols="12">
-                    <v-form>
+                    <v-form @submit.prevent="SubmitForm" >
                         <v-row>
                             <v-col cols="12" md="5">
-                                <v-text-field filled outlined color="white" v-model="email" :rules="emailRules" label="E-mail" :success="!!email" ></v-text-field>
+                                <v-text-field v-model="fbEmail" filled outlined color="white" :rules="emailRules" label="E-mail" :success="!!email" ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="7">
-                                <v-text-field filled outlined color="white" v-model="subject" label="Subject" ></v-text-field>
+                                <v-text-field id="userSubject" filled outlined color="white" v-model="fbSubject" label="Subject" ></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col cols="12">
-                                <v-textarea auto-grow rows="5" filled outlined color="white" v-model="message" label="Message" ></v-textarea>
+                                <v-textarea auto-grow rows="5" id="userBody" filled outlined color="white" v-model="fbBody" label="Message" ></v-textarea>
                             </v-col>
                         </v-row>
                         <v-row style="margin-bottom: 0;">
                             <v-col cols="12">
                                 <v-card-actions>
-                                    <v-btn text @click.stop="show=false">Close</v-btn>
+                                    <v-btn id="submitBtn" text @click="SubmitForm">Close</v-btn>
                                 </v-card-actions>
                             </v-col>
                         </v-row>
@@ -48,9 +48,13 @@
 
 <script>
 import { VDialog, VContainer, VRow, VCol, VForm, VTextField, VTextarea, VCard, VCardTitle, VCardText, VBtn } from "vuetify/lib/components";
+const db = require('../db/db');
 
 export default {
     data: () => ({
+        fbEmail: '',
+        fbSubject: '',
+        fbBody: '',
         valid: false,
         subject: '',
         email: '',
@@ -63,6 +67,20 @@ export default {
         VDialog, VContainer, VRow, VCol, VForm, VTextField, VTextarea, VCard, VCardTitle, VCardText, VBtn,
     },
     props: ['visible'],
+    methods: {
+        SubmitForm() {
+            console.log('starting');
+            db.firestore.collection('suggestions')
+                .add({email : this.fbEmail, subject : this.fbSubject, body : this.fbBody})
+                .then(() => {
+                    this.$emit('submitted');
+                    console.log("Document successfully written!");
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+        }
+    },
     computed: {
         show: {
         get () {
