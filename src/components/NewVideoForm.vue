@@ -313,10 +313,10 @@ export default {
                         console.log('Starting a new combo')
                         db.firestore.collection('unapprovedVideos').doc(newDoc.id).collection('combos')
                         .add({
-                            id : i,
                             startTime : this.vfStart[i],
                             endTime : this.vfEnd[i],
-                            notation : this.vfNotations[i]
+                            notation : this.vfNotations[i],
+                            id : i
                         })
                         .then(() => {
                             console.log('Combo ' + i)
