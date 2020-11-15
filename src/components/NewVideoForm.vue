@@ -325,6 +325,24 @@ export default {
                             console.error("Error writing document: ", error);
                         });
                     }
+                    this.initialUrl = '',
+                    this.vfUrl = '',
+                    this.showMinus = null,
+                    this.vfEmail = '',
+                    this.charSelected = '',
+                    this.selectedTags = '',
+                    this.vidReset = false,
+                    this.vfComboCount = [0],
+                    this.vfEnd = [],
+                    this.vfStart = [],
+                    this.vfNotations = [],
+                    this.videoCheck = false,
+                    this.vidDetails = [],
+                    this.valid = false,
+                    this.subject = '',
+                    this.email = '',
+                    this.vfComboCount = [0];
+
                     this.$emit('submitted');
                 })
                 .catch((error) => {
