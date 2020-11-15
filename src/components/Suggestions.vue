@@ -20,7 +20,7 @@
                     <v-form @submit.prevent="SubmitForm" >
                         <v-row>
                             <v-col cols="12" md="5">
-                                <v-text-field v-model="fbEmail" filled outlined color="white" :rules="emailRules" label="E-mail" :success="!!email" ></v-text-field>
+                                <v-text-field v-model="fbEmail" filled outlined color="white" :rules="emailRules" label="E-mail" :success="!!fbEmail" ></v-text-field>
                             </v-col>
                             <v-col cols="12" md="7">
                                 <v-text-field id="userSubject" filled outlined color="white" v-model="fbSubject" label="Subject" ></v-text-field>
@@ -116,8 +116,8 @@ export default {
     .v-card__title {
         font-size: 180%;
     }
-    .submitBtn {
+    #submitBtn {
         background-color: var(--v-cpurple-base);
-        color: var(--v-darker-base);
+        color: white;
     }
 </style>

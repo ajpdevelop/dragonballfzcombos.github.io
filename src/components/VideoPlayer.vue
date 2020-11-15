@@ -1,7 +1,9 @@
 <template>
     <div id="app">
+        <!--  VIDEO SIZE  -->
         <div class="ytcontainer" :style="[
-        !small && !xsmall?
+        !small && !xsmall ? this.isForm ?
+        { 'width': '70%', 'height': this.vidHeight + 'px' } :
         { 'width': this.$store.state.curVideoSize.width + 'px', 'height': this.$store.state.curVideoSize.height + 'px' } :
         { 'width': '100%', 'height': this.vidHeight + 'px' }
         ]">
@@ -22,7 +24,7 @@
             </div>
                 
             <div class="bottomHalf">
-                <v-row>
+                <v-row class="mb-0">
                     <v-col cols="8">
                         <div class="anInput">
                             <input class="loopInput" v-model="loopStart" placeholder="0:00">
@@ -33,7 +35,7 @@
                             <input class="loopInput" v-model="loopEnd" placeholder="0:00">
                             <span>min:sec</span>
                         </div>
-                        <v-btn :style="{backgroundColor : '#1e1e1e', border : '1px solid #FFF'}" @click="playVideo">Restart Loop</v-btn>
+                        <v-btn class="restartButton" :style="{backgroundColor : '#1e1e1e', border : '1px solid #FFF'}" @click="playVideo">Restart Loop</v-btn>
                     </v-col>
                     <v-col cols="4">
                         <span class="currentTime" v-text="ctFormatted[0] + ' ' + ctFormatted[1]"></span>
@@ -47,7 +49,6 @@
 <script>
 /* eslint-disable */
 import YouTubePlayer from 'youtube-player';
-
 import { VRow, VCol, VBtn } from "vuetify/lib/components";
 
 var YTPlayer;
@@ -55,7 +56,9 @@ export default {
     props: {
         comboId: String,
         currentTab: Number,
-        fontSize: Number
+        fontSize: Number,
+        isForm: Boolean,
+        uniqueId: String
     },
     components: {
         VRow, VCol, VBtn
@@ -142,6 +145,9 @@ export default {
     watch: {
         loopStart() {
             this.player.seekTo(this.loopStartSeconds, true);
+        },
+        playerId() {
+            this.videoId;
         }
     },
     methods: {
@@ -201,6 +207,13 @@ export default {
         this.player.on("ready", ev => this.onPlayerReady(ev));
         this.player.on("stateChange", ev => this.onPlayerStateChange(ev));
         this.setHeight();
+        this.$root.$on('newTime', newTimes => {
+            if(newTimes[2].localeCompare(this.uniqueId) == 0) {
+                this.loopStart = newTimes[0]
+                this.loopEnd = newTimes[1]
+            }
+        });
+        
     }
 }
 /* eslint-enable */
@@ -279,5 +292,8 @@ input:focus {
 }
 .v-btn {
     margin-left: 16px;
+}
+.restartButton {
+    margin-bottom: 10px;
 }
 </style>
