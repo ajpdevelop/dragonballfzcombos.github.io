@@ -19,7 +19,7 @@
         <!-- Test changing size of active while putting a bright white color on active icon & lower white of inactive icons VERY slightly. -->
         <v-card flat class="videoSizes" v-if="!small && !xsmall">
             <span>Resize Videos: </span>
-            <v-icon class="sizer" @click="newSize(1)">mdi-image-size-select-small</v-icon>
+            <!--<v-icon class="sizer" @click="newSize(1)">mdi-image-size-select-small</v-icon>-->
             <v-icon class="sizer" @click="newSize(2)">mdi-image-size-select-large</v-icon>
             <v-icon class="sizer" @click="newSize(3)">mdi-image-size-select-actual</v-icon>
         </v-card>

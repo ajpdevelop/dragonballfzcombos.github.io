@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from "axios";
+import charList from '../assets/roster.json';
 
 Vue.use(Vuex);
 
@@ -81,18 +81,9 @@ export default new Vuex.Store({
     actions: {
         getFullRoster(context) {
             if (context.state.roster.length)
-                return Promise.resolve();
-
-            var url = "https://dbfzcs.s3.us-east-2.amazonaws.com/roster.json";
-
-            return axios
-                .get(url)
-                .then(response => {
-                    for(var i in response.data)
-                        response.data[i].isSelected = false;
-                    
-                    context.commit("setRoster", response.data);
-                });
+                for(var i in charList)
+                    charList[i].isSelected = false;
+                context.commit("setRoster", charList);
         }
     }
 });
