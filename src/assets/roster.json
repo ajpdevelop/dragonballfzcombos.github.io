@@ -1,0 +1,248 @@
+{
+    "android16": {
+        "name": "Android 16",
+        "camel": "android16",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Android_16.png?alt=media",
+        "color": "#C5E075"
+    },
+    "android17": {
+        "name": "Android 17",
+        "camel": "android17",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Android_17.png?alt=media",
+        "color": "#A5BA6F"
+    },
+    "android18": {
+        "name": "Android 18",
+        "camel": "android18",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Android_18.png?alt=media",
+        "color": "#3951D1"
+    },
+    "android21": {
+        "name": "Android 21",
+        "camel": "android21",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Android_21.png?alt=media",
+        "color": "#F0A5B0"
+    },
+    "bardock": {
+        "name": "Bardock",
+        "camel": "bardock",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Bardock.png?alt=media",
+        "color": "#99B235"
+    },
+    "beerus": {
+        "name": "Beerus",
+        "camel": "beerus",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Beerus.png?alt=media",
+        "color": "#AB8BB6"
+    },
+    "broly": {
+        "name": "Broly",
+        "camel": "broly",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Broly.png?alt=media",
+        "color": "#D9E36E"
+    },
+    "brolyDbs": {
+        "name": "Broly DBS",
+        "camel": "brolyDbs",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Broly_DBS.png?alt=media",
+        "color": "#79760C"
+    },
+    "captainGinyu": {
+        "name": "Captain Ginyu",
+        "camel": "captainGinyu",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Captain_Ginyu.png?alt=media",
+        "color": "#AF87D6"
+    },
+    "cell": {
+        "name": "Cell",
+        "camel": "cell",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Cell.png?alt=media",
+        "color": "#2D7E08"
+    },
+    "cooler": {
+        "name": "Cooler",
+        "camel": "cooler",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Cooler.png?alt=media",
+        "color": "#8A5DBC"
+    },
+    "frieza": {
+        "name": "Frieza",
+        "camel": "frieza",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Frieza.png?alt=media",
+        "color": "#682997"
+    },
+    "gogeta": {
+        "name": "Gogeta",
+        "camel": "gogeta",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Gogeta.png?alt=media",
+        "color": "#23A7AF"
+    },
+    "gohanAdult": {
+        "name": "Gohan Adult",
+        "camel": "gohanAdult",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Gohan_Adult.png?alt=media",
+        "color": "#E67E36"
+    },
+    "gohanTeen": {
+        "name": "Gohan Teen",
+        "camel": "gohanTeen",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Gohan_Teen.png?alt=media",
+        "color": "#F4F02B"
+    },
+    "goku": {
+        "name": "Goku",
+        "camel": "goku",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Goku.png?alt=media",
+        "color": "#E57F34"
+    },
+    "gokuBlack": {
+        "name": "Goku Black",
+        "camel": "gokuBlack",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Goku_Black.png?alt=media",
+        "color": "#EEA4B0"
+    },
+    "gokuGt": {
+        "name": "Goku GT",
+        "camel": "gokuGt",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Goku_GT.png?alt=media",
+        "color": "#8560FE"
+    },
+    "gokuSs": {
+        "name": "Goku Super Saiyan",
+        "camel": "gokuSs",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Goku_SS.png?alt=media",
+        "color": "#F0832F"
+    },
+    "gokuSsgss": {
+        "name": "Goku SSGSS",
+        "camel": "gokuSsgss",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Goku_SSGSS.png?alt=media",
+        "color": "#5FE0E5"
+    },
+    "gokuUi": {
+        "name": "Goku Ultra Instinct",
+        "camel": "gokuUi",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Goku_UI.png?alt=media",
+        "color": "#95BAD8"
+    },
+    "gotenks": {
+        "name": "Gotenks",
+        "camel": "gotenks",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Gotenks.png?alt=media",
+        "color": "#453F8C"
+    },
+    "hit": {
+        "name": "Hit",
+        "camel": "hit",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Hit2.png?alt=media",
+        "color": "#D19EEA"
+    },
+    "janemba": {
+        "name": "Janemba",
+        "camel": "janemba",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Janemba.png?alt=media",
+        "color": "#6B1A6C"
+    },
+    "jiren": {
+        "name": "Jiren",
+        "camel": "jiren",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Jiren.png?alt=media",
+        "color": "#A70A2A"
+    },
+    "kefla": {
+        "name": "Kefla",
+        "camel": "kefla",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Kefla.png?alt=media",
+        "color": "#60BD0B"
+    },
+    "kidBuu": {
+        "name": "Kid Buu",
+        "camel": "kidBuu",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Kid_Buu.png?alt=media",
+        "color": "#F7B7B8"
+    },
+    "krillin": {
+        "name": "Krillin",
+        "camel": "krillin",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Krillin.png?alt=media",
+        "color": "#F79E16"
+    },
+    "majinBuu": {
+        "name": "Majin Buu",
+        "camel": "majinBuu",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Majin_Buu.png?alt=media",
+        "color": "#F3B1BE"
+    },
+    "masterRoshi": {
+        "name": "Master Roshi",
+        "camel": "masterRoshi",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Master_Roshi.png?alt=media",
+        "color": "#FDFE01"
+    },
+    "nappa": {
+        "name": "Nappa",
+        "camel": "nappa",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Nappa.png?alt=media",
+        "color": "#E8C56A"
+    },
+    "piccolo": {
+        "name": "Piccolo",
+        "camel": "piccolo",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Piccolo.png?alt=media",
+        "color": "#93E125"
+    },
+    "tien": {
+        "name": "Tien Shinhan",
+        "camel": "tien",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Tien.png?alt=media",
+        "color": "#617B87"
+    },
+    "trunks": {
+        "name": "Trunks",
+        "camel": "trunks",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Trunks.png?alt=media",
+        "color": "#7976D9"
+    },
+    "vegeta": {
+        "name": "Vegeta",
+        "camel": "vegeta",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Vegeta.png?alt=media",
+        "color": "#245AA7"
+    },
+    "vegetaSs": {
+        "name": "Vegeta Super Saiyan",
+        "camel": "vegetaSs",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Vegeta_SS.png?alt=media",
+        "color": "#2659A7"
+    },
+    "vegetaSsgss": {
+        "name": "Vegeta SSGSS",
+        "camel": "vegetaSsgss",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Vegeta_SSGSS.png?alt=media",
+        "color": "#4DDCE3"
+    },
+    "vegito": {
+        "name": "Vegito",
+        "camel": "vegito",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Vegito.png?alt=media",
+        "color": "#51EAE6"
+    },
+    "videl": {
+        "name": "Videl",
+        "camel": "videl",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Videl.png?alt=media",
+        "color": "#76117A"
+    },
+    "yamcha": {
+        "name": "Yamcha",
+        "camel": "yamcha",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Yamcha.png?alt=media",
+        "color": "#E4841A"
+    },
+    "zamasu": {
+        "name": "Zamasu",
+        "camel": "zamasu",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Zamasu.png?alt=media",
+        "color": "#9FD98D"
+    }
+}

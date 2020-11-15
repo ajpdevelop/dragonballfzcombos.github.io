@@ -19,7 +19,8 @@
         <v-btn @click="ToggleHowTo" >How to</v-btn>
         <v-btn @click.stop="showSuggestForm=true" >Suggestions</v-btn>
           <Suggestions :visible="showSuggestForm" @close="showSuggestForm=false" @submitted="OnFormSubmit"/>
-
+        <v-btn @click.stop="showVideoForm=true" >Submit Video</v-btn>
+          <NewVideoForm :visible="showVideoForm" @close="showVideoForm=false" @submitted="OnFormSubmit"/>
       </v-toolbar-items>
     </v-app-bar>
 
@@ -42,15 +43,18 @@ import CharacterList from "./components/CharacterList";
 import TabViews from "./components/TabViews";
 import HelpBar from "./components/HelpBar";
 import Suggestions from "./components/Suggestions";
+import NewVideoForm from "./components/NewVideoForm";
 import { VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VIcon } from "vuetify/lib/components";
 
 export default {
   data: () => ({
     activeTab: null,
     showSuggestForm: false,
+    showVideoForm: false
   }),
   components: {
     Suggestions,
+    NewVideoForm,
     CharacterList,
     TabViews,
     HelpBar,
@@ -77,12 +81,28 @@ export default {
     },
     OnFormSubmit() {
       this.showSuggestForm = false;
+      this.showVideoForm = false;
     }
   }
 };
 </script>
 
 <style lang="scss">
+::-webkit-scrollbar {
+    width: 0;
+}
+// Override some Vuetify primary styles
+#inspire {
+  .v-label--active {
+      color: rgba(255, 255, 255, 0.7)!important;
+    }
+  .v-list-item--active {
+    color: rgba(255, 255, 255, 0.7)!important;
+  }
+  .v-simple-checkbox i {
+    color: var(--v-cpurple-base)!important;
+  }
+}
 @font-face {
     font-family: "LeviReBrushed";
     src: local("LeviReBrushed"),
@@ -111,25 +131,18 @@ export default {
   background-color: var(--v-primary-base)!important;
   height: calc(100vh - 48px)!important;
 }
-/* width */
-::-webkit-scrollbar {
-  width: 15px;
-}
 
     /* Track */
 .nav-drawer {
       ::-webkit-scrollbar {
       width: 16px;
       border: 5px solid white;
-
     }
-
     ::-webkit-scrollbar-thumb {
       background-color: #b0b0b0;
       background-clip: padding-box;
       border: 0.05em solid #eeeeee;
     }
-
     ::-webkit-scrollbar-track {
       background-color: #494949;
     }
