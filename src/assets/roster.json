@@ -23,6 +23,12 @@
         "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Android_21.png?alt=media",
         "color": "#F0A5B0"
     },
+    "baby": {
+        "name": "Super Baby 2",
+        "camel": "baby",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Baby.png?alt=media",
+        "color": "#B38B1D"
+    },
     "bardock": {
         "name": "Bardock",
         "camel": "bardock",
@@ -71,11 +77,17 @@
         "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Frieza.png?alt=media",
         "color": "#682997"
     },
-    "gogeta": {
-        "name": "Gogeta",
-        "camel": "gogeta",
+    "gogetaSsgss": {
+        "name": "Gogeta SSGSS",
+        "camel": "gogetaSsgss",
         "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/Gogeta.png?alt=media",
         "color": "#23A7AF"
+    },
+    "gogetaSs4": {
+        "name": "Gogeta SS4",
+        "camel": "gogetaSs4",
+        "image": "https://firebasestorage.googleapis.com/v0/b/dragonball-fighterz-combos.appspot.com/o/SS4_Gogeta.png?alt=media",
+        "color": "#B54708"
     },
     "gohanAdult": {
         "name": "Gohan Adult",
