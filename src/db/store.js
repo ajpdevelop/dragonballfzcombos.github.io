@@ -12,8 +12,9 @@ export default new Vuex.Store({
         characterOne: null,
         characterTwo: null,
         characterThree: null,
-        howToExpanded: false,
+        howToExpanded: true,
         drawerState: true,
+        showNotation: false,
         curVideoSize: {
             width: 640,
             height: 360
@@ -59,20 +60,23 @@ export default new Vuex.Store({
             state.characterTabActive = characterTab;
         },
         toggleDrawerState (state, data) {
-            state.drawerState = data
+            state.drawerState = data;
         },
         ToggleHowTo(state) {
-            state.howToExpanded = !state.howToExpanded
+            state.howToExpanded = !state.howToExpanded;
+        },
+        ToggleNotation(state) {
+            state.showNotation = !state.showNotation;
         },
         ChangeVideoSize(state, newSize) {
             if(newSize === 1) {
-                state.curVideoSize = state.videoSizeOne
+                state.curVideoSize = state.videoSizeOne;
             } else if (newSize === 2) {
-                state.curVideoSize = state.videoSizeTwo
+                state.curVideoSize = state.videoSizeTwo;
             } else if (newSize === 3) {
-                state.curVideoSize = state.videoSizeThree
+                state.curVideoSize = state.videoSizeThree;
             } else
-            console.log('Size Error, newSize not equal to 1-3. newSize=' + newSize)
+            console.log('Size Error, newSize not equal to 1-3. newSize=' + newSize);
         }
     },
     getters : {
