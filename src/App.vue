@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-app-bar dense app>
-      <v-app-bar-nav-icon class="navcon" @click="drawerState = !drawerState">
+      <v-app-bar-nav-icon class="navcon" @click="drawerState = !drawerState;">
         <v-icon v-if="!this.$store.state.drawerState" large color="white" >
           mdi-account-arrow-right
         </v-icon>
@@ -16,10 +16,12 @@
       <div class="flex-grow-1"></div>
 
       <v-toolbar-items>
-        <v-btn @click="ToggleHowTo" >How to</v-btn>
-        <v-btn @click.stop="showSuggestForm=true" >Suggestions</v-btn>
+        <v-btn @click="ToggleHowTo" small >How to</v-btn>
+        <v-btn @click.stop="showNotation=true" small >Notation</v-btn>
+          <Notation :visible="showNotation" @close="showNotation=false" @submitted="OnFormSubmit"/>
+        <v-btn @click.stop="showSuggestForm=true" small >Suggestions</v-btn>
           <Suggestions :visible="showSuggestForm" @close="showSuggestForm=false" @submitted="OnFormSubmit"/>
-        <v-btn @click.stop="showVideoForm=true" >Submit Video</v-btn>
+        <v-btn @click.stop="showVideoForm=true" small >Submit Video</v-btn>
           <NewVideoForm :visible="showVideoForm" @close="showVideoForm=false" @submitted="OnFormSubmit"/>
       </v-toolbar-items>
     </v-app-bar>
@@ -42,6 +44,7 @@
 import CharacterList from "./components/CharacterList";
 import TabViews from "./components/TabViews";
 import HelpBar from "./components/HelpBar";
+import Notation from "./components/Notation";
 import Suggestions from "./components/Suggestions";
 import NewVideoForm from "./components/NewVideoForm";
 import { VApp, VMain, VNavigationDrawer, VAppBar, VAppBarNavIcon, VToolbarTitle, VToolbarItems, VBtn, VIcon } from "vuetify/lib/components";
@@ -50,9 +53,11 @@ export default {
   data: () => ({
     activeTab: null,
     showSuggestForm: false,
-    showVideoForm: false
+    showVideoForm: false,
+    showNotation: false
   }),
   components: {
+    Notation,
     Suggestions,
     NewVideoForm,
     CharacterList,
@@ -70,18 +75,19 @@ export default {
     drawerState: {
       get () { return this.$store.getters.drawerState },
       set (v) { return this.$store.commit('toggleDrawerState', v) }
-    }
+    },
   },
   methods: {
     characterTabActive(characterTab) {
         return this.$store.commit("setActiveCharacterTab", characterTab);
     },
     ToggleHowTo() {
-        this.$store.commit('ToggleHowTo')
+      this.$store.commit('ToggleHowTo')
     },
     OnFormSubmit() {
       this.showSuggestForm = false;
       this.showVideoForm = false;
+      this.showNotation = false;
     }
   }
 };

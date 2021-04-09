@@ -1,7 +1,7 @@
 <template>
     <v-card align="center" justify="center" v-if="!this.$store.state.howToExpanded" class="howTo">
-            <span class="accentText">TIP</span>: View multiple characters by selecting the different FIGHTER tabs below and selecting a new character!
-            <v-icon class="closeHowTo" @click="ToggleHowTo">mdi-close-circle</v-icon>
+        View multiple characters by selecting the different FIGHTER tabs below and selecting a new character!
+        <v-icon class="closeHowTo" @click="ToggleHowTo">mdi-close-circle</v-icon>
     </v-card>
 </template>
 
@@ -22,8 +22,8 @@ export default {
 
 <style scoped>
     .howTo {
-        padding: 6px 0;
-        font-size: 18px;
+        padding: 6px 4px;
+        font-size: 14px;
     }
     .closeHowTo {
         margin-left: 8px;
