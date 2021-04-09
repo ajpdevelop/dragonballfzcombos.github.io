@@ -1,16 +1,20 @@
 <template>
     <v-card>
+        <div class="charDisclaimer">
+            <v-icon x-large class="ml-2" style="color:var(--v-cyellow-base);">mdi-arrow-up-bold</v-icon>
+            <v-spacer></v-spacer>
+            <span class="pl-2">Click the top left icon to view character roster</span>
+        </div>
         <v-tabs centered v-model="tab" height="64px" background-color="primary" dark class="stuff">
-
-            <v-tab href="#tab-1" large @click="characterTabActive('characterTab1')">
+            <v-tab href="#tab-1" class="tabTitle" large @click="characterTabActive('characterTab1')">
                 <span v-if="this.$store.state.characterOne != null" v-text="this.$store.state.characterOne.name"></span>
                 <span v-else>Fighter 1</span>
             </v-tab>
-            <v-tab href="#tab-2" large @click="characterTabActive('characterTab2')">
+            <v-tab href="#tab-2" class="tabTitle" large @click="characterTabActive('characterTab2')">
                 <span v-if="this.$store.state.characterTwo != null" v-text="this.$store.state.characterTwo.name"></span>
                 <span v-else>Fighter 2</span>
             </v-tab>
-            <v-tab href="#tab-3" large @click="characterTabActive('characterTab3')">
+            <v-tab href="#tab-3" class="tabTitle" large @click="characterTabActive('characterTab3')">
                 <span v-if="this.$store.state.characterThree != null" v-text="this.$store.state.characterThree.name"></span>
                 <span v-else>Fighter 3</span>
             </v-tab>
@@ -55,7 +59,7 @@
             },
             xsmall() {
                 return this.$vuetify.breakpoint.xs
-            }
+            },
         },
         methods: {
             characterTabActive(characterTab) {
@@ -71,6 +75,9 @@
 <style>
     .v-tab {
         font-size: 16px;
+    }
+    .tabTitle {
+        color: var(--v-cyellow-base)!important;
     }
     .videoSizes {
         margin: 8px 16px 0 0;

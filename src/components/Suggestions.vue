@@ -83,14 +83,14 @@ export default {
     },
     computed: {
         show: {
-        get () {
-            return this.visible
-        },
-        set (value) {
-            if (!value) {
-            this.$emit('close')
+            get () {
+                return this.visible
+            },
+            set (value) {
+                if (!value) {
+                this.$emit('close')
+                }
             }
-        }
         }
     }
 }
