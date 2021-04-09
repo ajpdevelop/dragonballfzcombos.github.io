@@ -3,7 +3,7 @@
         <div class="charDisclaimer">
             <v-icon x-large class="ml-2" style="color:var(--v-cyellow-base);">mdi-arrow-up-bold</v-icon>
             <v-spacer></v-spacer>
-            <span class="pl-2">Click the top left icon to view character roster</span>
+            <span class="pl-2">Click the top left icon to show / hide the character roster</span>
         </div>
         <v-tabs centered v-model="tab" height="64px" background-color="primary" dark class="stuff">
             <v-tab href="#tab-1" class="tabTitle" large @click="characterTabActive('characterTab1')">
