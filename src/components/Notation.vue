@@ -1,11 +1,11 @@
 <template>
-    <v-dialog v-model="show" max-width="900px" content-class="v-dialog--custom" scrollable overflowed>
+    <v-dialog v-model="show" max-width="800px" content-class="v-dialog--custom" scrollable overflowed>
         <v-card outlined>
-            <v-card-title class="justify-center">
+            <v-card-title class="justify-center" style="background-color: #3d3d3d">
                 <span style="font-size: 32px;">What is Notation?</span>
             </v-card-title>
             <v-icon large class="closeNotation" @click="ToggleNotation">mdi-close-circle</v-icon>
-            <v-container class="mt-0 pt-0 px-6 notationContainer">
+            <v-container class="ma-0 pt-0 px-6 notationContainer">
                 <v-row>
                     <v-col cols="12" align="center">
                         Use Numpad Notation instead of Directional
@@ -143,10 +143,54 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+    .v-dialog--custom {
+        ::-webkit-scrollbar {
+            width: 16px;
+            border: 5px solid white;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #b0b0b0;
+            background-clip: padding-box;
+            border: 0.05em solid #eeeeee;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #494949;
+        }
+        /* Buttons */
+        ::-webkit-scrollbar-button:single-button {
+            background-color: #555555;
+            display: block;
+            border-style: solid;
+            height: 13px;
+            width: 16px;
+        }
+        /* Up */
+        ::-webkit-scrollbar-button:single-button:vertical:decrement {
+            border-width: 0 8px 8px 8px;
+            border-color: transparent transparent #bbbbbb transparent;
+        }
+
+        ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+            border-color: transparent transparent #cccccc transparent;
+        }
+        /* Down */
+        ::-webkit-scrollbar-button:single-button:vertical:increment {
+            border-width: 8px 8px 0 8px;
+            border-color: #bbbbbb transparent transparent transparent;
+        }
+
+        ::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+            border-color: #cccccc transparent transparent transparent;
+        }
+    }
     .notationContainer {
         overflow-y: auto!important;
         max-width: 800px;
+        margin: 0 auto;
     }
     .notations .row .col {
         border: 1px solid white;
@@ -162,7 +206,7 @@ export default {
     }
     .closeNotation {
         color: var(--v-cyellow-base)!important;
-        top: -45px;
+        top: -48px;
         margin-bottom: -35px;
         left: 89%;
         width: 36px;

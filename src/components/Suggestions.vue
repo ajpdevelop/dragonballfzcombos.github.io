@@ -1,32 +1,32 @@
 <template>
-    <v-dialog v-model="show" content-class="v-dialog--custom">
+    <v-dialog v-model="show" max-width="800px" content-class="v-dialog--custom">
         <v-card outlined>
-            <v-container>
+            <v-container class="suggestionContainer ma-0 pa-0">
                 <v-row>
                     <v-col cols="12">
-                        <v-card-title>
+                        <v-card-title style="background-color: #3d3d3d" class="justify-center">
                         Suggestions / Contact Me
                         </v-card-title>
-
-                        <v-card-text>
+                        <v-icon large class="closeSuggestion" @click="ToggleNotation">mdi-close-circle</v-icon>
+                        <v-card-text class="mt-0 pt-0 px-4">
                             If you would like to include your videos or provide any suggestions, questions, concerns or inquiries! Valid E-mail address required.
                         </v-card-text>
 
                         <v-divider></v-divider>
                     </v-col>
                 </v-row>
-                <v-row>
+                <v-row class="px-4">
                     <v-col cols="12">
                     <v-form @submit.prevent="SubmitForm" >
                         <v-row>
-                            <v-col cols="12" md="5">
+                            <v-col cols="12" md="5" class="my-0 py-0">
                                 <v-text-field v-model="fbEmail" filled outlined color="white" :rules="emailRules" label="E-mail" :success="!!fbEmail" ></v-text-field>
                             </v-col>
-                            <v-col cols="12" md="7">
+                            <v-col cols="12" md="7" class="my-0 py-0">
                                 <v-text-field id="userSubject" filled outlined color="white" v-model="fbSubject" label="Subject" ></v-text-field>
                             </v-col>
                         </v-row>
-                        <v-row>
+                        <v-row class="my-0 py-0">
                             <v-col cols="12">
                                 <v-textarea auto-grow rows="5" id="userBody" filled outlined color="white" v-model="fbBody" label="Message" ></v-textarea>
                             </v-col>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { VDialog, VContainer, VRow, VCol, VForm, VTextField, VTextarea, VCard, VCardTitle, VCardText, VBtn } from "vuetify/lib/components";
+import { VDialog, VIcon, VContainer, VRow, VCol, VForm, VTextField, VTextarea, VCard, VCardTitle, VCardText, VBtn } from "vuetify/lib/components";
 const db = require('../db/db');
 
 export default {
@@ -64,7 +64,7 @@ export default {
         ],
     }),
     components: {
-        VDialog, VContainer, VRow, VCol, VForm, VTextField, VTextarea, VCard, VCardTitle, VCardText, VBtn,
+        VDialog, VIcon, VContainer, VRow, VCol, VForm, VTextField, VTextarea, VCard, VCardTitle, VCardText, VBtn,
     },
     props: ['visible'],
     methods: {
@@ -79,6 +79,9 @@ export default {
           .catch((error) => {
             console.error("Error writing document: ", error);
           });
+        },
+        ToggleNotation() {
+            this.$emit('close');
         }
     },
     computed: {
@@ -106,9 +109,10 @@ export default {
             }
         }
     }
-    .v-dialog--custom {
-        max-width: 768px;
-        overflow-y: initial;
+    .suggestionContainer {
+        overflow-y: auto!important;
+        overflow-x: hidden;
+        max-width: 800px;
     }
     .v-sheet--outlined {
         border: 2px solid var(--v-cpurple-base)!important;
@@ -119,5 +123,26 @@ export default {
     #submitBtn {
         background-color: var(--v-cpurple-base);
         color: white;
+    }
+    .closeSuggestion {
+        color: var(--v-cyellow-base)!important;
+        top: -62px;
+        margin-bottom: -35px;
+        left: 89%;
+        width: 36px;
+        position: absolute;
+    }
+    @media only screen and (min-width: 720px) {
+        .closeSuggestion {
+            left: 92%;
+        }
+    }
+    @media only screen and (min-width: 900px) {
+        .closeSuggestion {
+            left: 93%;
+        }
+    }
+    .closeNSuggestion:focus {
+        background-color: inherit;
     }
 </style>
