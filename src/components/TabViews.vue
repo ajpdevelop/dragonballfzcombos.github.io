@@ -1,7 +1,7 @@
 <template>
     <v-card>
         <div class="charDisclaimer">
-            <v-icon x-large class="ml-2" style="color:var(--v-cyellow-base);">mdi-arrow-up-bold</v-icon>
+            <v-icon x-large class="ml-2" style="color:var(--v-cyellow-base);">mdi-arrow-up-bold mdi-rotate-315</v-icon>
             <v-spacer></v-spacer>
             <span class="pl-2">Click the top left icon to show / hide the character roster</span>
         </div>

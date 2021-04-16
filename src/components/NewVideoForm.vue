@@ -227,6 +227,7 @@
                         <v-card-title class="previewHeader">
                             Video Preview
                         </v-card-title>
+                        <v-icon large class="closeNew" @click="ToggleNotation">mdi-close-circle</v-icon>
                     </v-col>
                     <v-col cols="12">
                         <v-card-text v-text="vidDetails[0]" class="previewTitle"></v-card-text>
@@ -268,7 +269,7 @@ export default {
         charSelected: '',
         selectedTags: '',
         vidReset: false,
-        vfTags: ['General', 'Corner', 'Midscreen', 'ToD', 'Assists', 'Mixups'],
+        vfTags: ['BnB', 'Advanced', 'Rejump', 'ToD', 'Mixups'],
         vfComboCount: [0],
         vfEnd: [],
         vfStart: [],
@@ -293,6 +294,9 @@ export default {
     },
     props: ['visible'],
     methods: {
+        ToggleNotation() {
+            this.$emit('close');
+        },
         SubmitForm() {
             var newDoc = db.firestore.collection('unapprovedVideos').doc();
 
@@ -438,6 +442,44 @@ export default {
     .formContainer {
         margin-left: 12px;
         overflow-y: auto!important;
+        ::-webkit-scrollbar {
+            width: 16px;
+            border: 5px solid white;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #b0b0b0;
+            background-clip: padding-box;
+            border: 0.05em solid #eeeeee;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #494949;
+        }
+        /* Buttons */
+        ::-webkit-scrollbar-button:single-button {
+            background-color: #555555;
+            display: block;
+            border-style: solid;
+            height: 13px;
+            width: 16px;
+        }
+        /* Up */
+        ::-webkit-scrollbar-button:single-button:vertical:decrement {
+            border-width: 0 8px 8px 8px;
+            border-color: transparent transparent #bbbbbb transparent;
+        }
+
+        ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+            border-color: transparent transparent #cccccc transparent;
+        }
+        /* Down */
+        ::-webkit-scrollbar-button:single-button:vertical:increment {
+            border-width: 8px 8px 0 8px;
+            border-color: #bbbbbb transparent transparent transparent;
+        }
+
+        ::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+            border-color: #cccccc transparent transparent transparent;
+        }
     }
     .previewPanel {
         background-color: #272727;
@@ -524,5 +566,26 @@ export default {
     .subHeader {
         color: var(--v-cyellow-base);
         font-size: 140%;
+    }
+    .closeNew {
+        color: var(--v-cyellow-base)!important;
+        top: -60px;
+        margin-bottom: -35px;
+        left: 89%;
+        width: 36px;
+        position: absolute;
+    }
+    @media only screen and (min-width: 720px) {
+        .closeNew {
+            left: 92%;
+        }
+    }
+    @media only screen and (min-width: 900px) {
+        .closeNew {
+            left: 94%;
+        }
+    }
+    .closeNew:focus {
+        background-color: inherit;
     }
 </style>
