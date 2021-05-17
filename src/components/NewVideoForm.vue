@@ -20,7 +20,7 @@
                 <v-col cols="12">
 
                     <!-- User Email, Video ID, Title, Author, Author Link, Combo Tag (Can select multiple), Timestamps & Notation (Multiple line add.) 
-                    Need to fix to pull information of the video automatically with just the video URL given. -->
+                    Need to clean up /edit pulling information of the video automatically with just the video URL given. -->
                     <v-form @submit.prevent="SubmitForm" autocomplete="off" >
                         <v-row align="center" class="mb-0">
                             <v-col cols="12" md="6" class="pb-0">
@@ -55,6 +55,7 @@
                             </v-col>
                         </v-row>
                         <v-row>
+                            <!-- Explains one of the major ideas of the app. Explains which buttons for each controller means in regards to the videos / combos shown. -->
                             <v-expansion-panels>
                                 <v-expansion-panel class="expandPanel">
                                     <v-expansion-panel-header class="expandHeader">

@@ -1,3 +1,4 @@
+<!-- Takes an email and comment and stores that in my Google Firestore. -->
 <template>
     <v-dialog v-model="show" max-width="800px" content-class="v-dialog--custom">
         <v-card outlined>

@@ -1,3 +1,4 @@
+<!-- Using the props (data) passed in from the parent component load the VideoPLayer & ViewCombos components. -->
 <template>
     <div>
     <VideoPlayer :uniqueId="comboId" :combo-id="comboId" :font-size="fontSize"/>
