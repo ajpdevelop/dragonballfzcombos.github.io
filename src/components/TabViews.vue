@@ -1,3 +1,4 @@
+<!-- Main content area using tabs. -->
 <template>
     <v-card>
         <div class="charDisclaimer">

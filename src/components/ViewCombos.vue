@@ -1,3 +1,4 @@
+<!-- Use expansion panels from Vuetify to sort / show Combo data from Google Firestore. (From parent) -->
 <template>
     <v-expansion-panels>
         <v-expansion-panel class="expandPanel mr-4 ml-4">

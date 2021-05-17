@@ -1,3 +1,4 @@
+<!-- This is the initial component you see when loading the site in the main content area. -->
 <template>
     <v-card class="placeholder">
         <center><h4 style="margin: 0; padding-bottom: 12px;">About</h4></center>

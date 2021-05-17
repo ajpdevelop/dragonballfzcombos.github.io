@@ -1,3 +1,4 @@
+<!-- Simple Show/Hide toolbar above the main section to help users navigate. -->
 <template>
     <v-card align="center" justify="center" v-if="!this.$store.state.howToExpanded" class="howTo">
         View multiple characters by selecting the different FIGHTER tabs below and selecting a new character!
