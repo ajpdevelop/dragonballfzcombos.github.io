@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <!--  VIDEO SIZE  -->
+        <!--  VIDEO SIZE (Because youtube's options leave me no choice I have to edit this on my own.) -->
         <div class="ytcontainer" :style="[
         !small && !xsmall ? this.isForm ?
         { 'width': '70%', 'height': this.vidHeight + 'px' } :

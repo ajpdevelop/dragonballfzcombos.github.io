@@ -1,3 +1,4 @@
+<!-- If no character is selected hide the component. If there is a selected character show the component in the current tab and pass in the selected character's data to the ComboContainer component to render it. -->
 <template>
     <div class="charDetails">
         <h4 v-if="this.character !== null" v-text="character.name"></h4>
@@ -13,6 +14,7 @@ export default {
         currentTab: Number
     },
     computed: {
+        // From the Vuex store grab the correct selected character based on which tab is selected.
         character() {
             if(this.currentTab === 1){
                 return this.$store.state.characterOne;
