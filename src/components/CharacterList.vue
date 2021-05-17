@@ -1,3 +1,4 @@
+<!-- This is the component that shows all of the character's images for the user to select one. -->
 <template>
     <v-container class="charList">
         <v-row>
@@ -26,6 +27,8 @@
 
 <script>
 import { VContainer, VRow, VCol } from "vuetify/lib/components";
+
+// Using Vuex store to globally control the drawer, character information from json, and selected character.
 
 export default {
     data: () => ({

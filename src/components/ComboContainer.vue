@@ -1,14 +1,15 @@
 <template>
   <v-row class="conWrapper">
+    <!-- For each video in the approved videos for the selected character pass the data in each loop into a ComboPlayer component.-->
     <v-col class="pa-0 ma-0 flex-grow-0" v-for="video in aVideo" :key="video.vfUrl" >
     <v-card elavation-0 class="comboContainer" :style="
         [ !mobile ? { 'width': curWidth + 'px' } : { 'width': '100%' } ]
      ">
-      <div class="aCombo">
-        <h3 v-text="video.vidDetails.title" :style="{ 'font-size': h3size + 'px'} "></h3>
-        <p class="author" :style="{ 'font-size': h3size + 'px'} ">YouTube Channel: <a target="_blank" rel="noopener noreferrer" v-text="video.vidDetails.author" :href='"https://www.youtube.com/channel/" + video.vidDetails.authorlink'></a></p>
-        <ComboPlayer :vfCategories="video.vfCategories" :vfComboCount="video.combos.vfNotations.length" :vfNotations="video.combos.vfNotations" :vfStart="video.combos.vfStart" :vfEnd="video.combos.vfEnd" :combo-id="video.vfUrl" :font-size="fontsize"/>
-      </div>
+        <div class="aCombo">
+          <h3 v-text="video.vidDetails.title" :style="{ 'font-size': h3size + 'px'} "></h3>
+          <p class="author" :style="{ 'font-size': h3size + 'px'} ">YouTube Channel: <a target="_blank" rel="noopener noreferrer" v-text="video.vidDetails.author" :href='"https://www.youtube.com/channel/" + video.vidDetails.authorlink'></a></p>
+          <ComboPlayer :vfCategories="video.vfCategories" :vfComboCount="video.combos.vfNotations.length" :vfNotations="video.combos.vfNotations" :vfStart="video.combos.vfStart" :vfEnd="video.combos.vfEnd" :combo-id="video.vfUrl" :font-size="fontsize"/>
+        </div>
     </v-card>
     </v-col>
   </v-row>
@@ -75,7 +76,7 @@ export default {
       var self = this;
       this.aVideo = [];
       
-      // Get all entries for selected character
+      // Get all entries for selected character from my Google Firestore collection.
       db.firestore.collection('approvedVideos').where("fighter", "==", this.character.name).get()
         .then(doc => {
           // Create new Empty Obj. 
