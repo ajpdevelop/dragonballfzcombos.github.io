@@ -9,9 +9,10 @@
     "gh-pages-deploy": "node scripts/gh-pages-deploy.js"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "firebase": "^8.0.1",
+    "jsdoc": "^3.6.7",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
     "vue": "^2.6.11",

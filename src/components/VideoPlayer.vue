@@ -22,7 +22,7 @@
                     </v-col>
                 </v-row>
             </div>
-                
+
             <div class="bottomHalf">
                 <v-row class="mb-0">
                     <v-col cols="8">
@@ -109,7 +109,7 @@ export default {
                 }
                 this.resumeVideo();
                 if(this.loopStart !== null) {
-                    return startTime;  
+                    return startTime;
                 } else { null }
             }
         },
